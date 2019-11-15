@@ -8,7 +8,7 @@
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
-#' @seealso \link{\code{get_isocodes()}}, \link{\code{get_regions()}}, \link{\code{get_shapefile()}}
+#' @seealso \code{get_isocodes}, code{get_regions}
 #'
 #' @importFrom rvest html_session html_table
 #'

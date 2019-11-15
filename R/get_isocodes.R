@@ -11,7 +11,7 @@
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
-#' @seealso \link{\code{get_regions()}}, \link{\code{get_countries()}}, \link{\code{get_shapefile()}}
+#' @seealso \code{get_regions}, code{get_countries}
 #'
 #' @importFrom rvest html_session html_nodes html_text html_table
 #'

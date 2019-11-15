@@ -24,7 +24,7 @@ head(x)
 x[x[ , "region"] == "Africa", ]
 }
 \seealso{
-\link{\code{get_regions()}}, \link{\code{get_countries()}}, \link{\code{get_shapefile()}}
+\code{get_regions}, code{get_countries}
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}

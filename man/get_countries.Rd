@@ -19,7 +19,7 @@ A Internet connexion is required.
 get_countries()
 }
 \seealso{
-\link{\code{get_isocodes()}}, \link{\code{get_regions()}}, \link{\code{get_shapefile()}}
+\code{get_isocodes}, code{get_regions}
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
