@@ -14,6 +14,7 @@
 #'
 #' @seealso \code{get_isocodes}, \code{get_countries}, \code{get_regions}
 #'
+#' @importFrom utils download.file unzip
 #' @export
 #'
 #' @examples
