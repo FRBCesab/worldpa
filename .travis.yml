@@ -1,0 +1,11 @@
+language: r
+warnings_are_errors: false
+sudo: required
+
+notifications:
+  email:
+    recipients:
+      - nicolas.casajus@fondationbiodiversite.fr
+
+r_packages:
+  - rvest
