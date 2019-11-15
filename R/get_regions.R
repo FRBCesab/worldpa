@@ -8,8 +8,6 @@
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
-#' @seealso \code{get_isocodes}, \code{get_countries}, \code{get_wdpa}
-#'
 #' @importFrom rvest html_session html_nodes html_text
 #'
 #' @export

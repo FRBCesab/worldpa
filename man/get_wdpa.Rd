@@ -23,29 +23,7 @@ Download World protected areas shapefiles from the Protected Planet website.
 A Internet connexion is required.
 }
 \examples{
-\dontrun{
-# Download protected area for the world
-get_wdpa()
-}
-
-\dontrun{
-# Download protected area for the African continent
-get_regions()
-get_wdpa(regions = "Africa")
-}
-
-# Download protected area for Algeria
-get_countries()
-get_wdpa(countries = "Algeria")
-
-\dontrun{
-# Download protected area for Spain and Portugal
-get_countries()
-get_wdpa(countries = c("Spain", "Portugal")
-}
-}
-\seealso{
-\code{get_isocodes}, \code{get_countries}, \code{get_regions}
+# vignette(topic = "worldpa")
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}

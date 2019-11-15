@@ -16,10 +16,9 @@ Get World countries names from the Protected Planet website (based on the UNEP c
 A Internet connexion is required.
 }
 \examples{
-get_countries()
-}
-\seealso{
-\code{get_isocodes}, \code{get_regions}, \code{get_wdpa}
+x <- get_countries()
+
+head(x, 10)
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}

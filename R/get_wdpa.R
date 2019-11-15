@@ -12,32 +12,12 @@
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
-#' @seealso \code{get_isocodes}, \code{get_countries}, \code{get_regions}
-#'
 #' @importFrom utils download.file unzip
+#'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' # Download protected area for the world
-#' get_wdpa()
-#' }
-#'
-#' \dontrun{
-#' # Download protected area for the African continent
-#' get_regions()
-#' get_wdpa(regions = "Africa")
-#' }
-#'
-#' # Download protected area for Algeria
-#' get_countries()
-#' get_wdpa(countries = "Algeria")
-#'
-#' \dontrun{
-#' # Download protected area for Spain and Portugal
-#' get_countries()
-#' get_wdpa(countries = c("Spain", "Portugal")
-#' }
+#' # vignette(topic = "worldpa")
 
 
 

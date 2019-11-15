@@ -8,14 +8,14 @@
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
-#' @seealso \code{get_isocodes}, \code{get_regions}, \code{get_wdpa}
-#'
 #' @importFrom rvest html_session html_table
 #'
 #' @export
 #'
 #' @examples
-#' get_countries()
+#' x <- get_countries()
+#'
+#' head(x, 10)
 
 
 

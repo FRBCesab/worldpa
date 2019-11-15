@@ -14,7 +14,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   rvest
-Suggests: knitr, rmarkdown, testthat
+Suggests: knitr, rmarkdown, testthat, pkgdown
 VignetteBuilder: knitr
 NeedsCompilation: no
 RoxygenNote: 7.0.0

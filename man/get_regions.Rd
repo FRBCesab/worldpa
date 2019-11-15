@@ -18,9 +18,6 @@ A Internet connexion is required.
 \examples{
 get_regions()
 }
-\seealso{
-\code{get_isocodes}, \code{get_countries}, \code{get_wdpa}
-}
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
 }
