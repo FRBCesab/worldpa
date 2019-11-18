@@ -2,10 +2,12 @@
 #'
 #' @description Get the ISO3 code of all World countries from the Protected Planet website (based on the UNEP classification).
 #'
-#' @return A data frame with 3 columns:
-#'   - region, the regions of the world
-#'   - country, the countries of the world
-#'   - iso3, the iso3 code of countries
+#' @return A 3-columns data frame:
+#' \itemize{
+#'   \item region, the regions of the world
+#'   \item country, the countries of the world
+#'   \item iso3, the iso3 code of countries
+#' }
 #'
 #' @details A Internet connexion is required.
 #'
