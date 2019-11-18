@@ -13,4 +13,107 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-In construction...
+
+
+# Introduction
+
+This R package is an interface to the World Database on Protected Areas (WDPA)
+hosted in the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
+It allows user to download spatial shapefiles of protected areas (PA) at three different levels: country, region or the world.
+
+
+# Installation
+
+To install this package from [GitHub](https://www.github.com/frbcesab/worldpa),
+first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
+
+```{r echo=TRUE, eval=FALSE}
+# Install the devtools package   ----------
+install.packages("devtools", dependencies = TRUE)
+
+# Install the worldpa package    ----------
+devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
+
+# Load the worldpa package       ----------
+library(worldpa)
+```
+
+
+# Getting started
+
+This package contains four main functions:
+
+- `get_regions()`: returns the world regions names according to the UNEP classification
+- `get_countries()`: returns the world countries names according to the UNEP classification
+- `get_isocodes()`: returns the ISO3 code of all countries of the world
+- `get_wdpa()`: downloads world protected areas shapefiles (core function)
+
+Let's explore the function `get_regions()`.
+
+```{r echo=TRUE, eval=TRUE}
+# Get the world regions names    ----------
+get_regions()
+```
+
+This function returns the correct spelling of world regions, useful to set the parameter `regions` of the function `get_wdpa()`.
+
+Now, let's take a look at the function `get_countries()`.
+
+```{r echo=TRUE, eval=TRUE}
+# Get the world countries names  ----------
+countries <- get_countries()
+
+# Get the number of countries    ----------
+length(countries)
+
+# Print the first ten countries  ----------
+countries[1:10]
+```
+
+This function returns the correct spelling of world countries, useful to set the parameter `countries` of the function `get_wdpa()`.
+
+The function `get_isocodes()` returns the ISO3 code (three-letters acronym) of all countries of the world.
+
+```{r echo=TRUE, eval=TRUE}
+# Get the countries ISO3 codes   ----------
+iso3 <- get_isocodes()
+
+# Print the first twenty rows    ----------
+head(iso3, 20)
+```
+
+Finally, the use of the function `get_wdpa()` is quite simple:
+
+```{r echo=TRUE, eval=FALSE}
+# Download PA for one country    ----------
+get_wdpa(countries = "Spain")
+
+# Download PA for two countries  ----------
+get_wdpa(countries = c("Portugal", "Spain"))
+
+# Download PA for one region     ----------
+get_wdpa(regions = "Africa")
+
+# Download PA for two regions    ----------
+get_wdpa(regions = c("Europe", "Africa"))
+
+# Download PA for the world      ----------
+get_wdpa() # Not recommended (too big)
+```
+
+The argument `path` can be set to change the directory where shapefiles will be written. The default is the current directory.
+Let's say we want to save shapefiles in the directory **wdpa** located on the **Desktop**:
+
+```{r echo=TRUE, eval=FALSE}
+get_wdpa(countries = "Spain", path = "/Users/username/Desktop/wdpa")   # Unix
+get_wdpa(countries = "Spain", path = "C:/Users/username/Desktop/wdpa") # Windows
+```
+
+**Note:** the function `get_wdpa()` does not return any object on R: shapefiles are directly written on the hard drive.
+
+
+# Study case
+
+```{r echo=TRUE, eval=FALSE}
+get_wdpa(regions = "Africa", path = "Desktop/WDPA")
+```
