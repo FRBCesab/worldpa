@@ -55,4 +55,4 @@ And browse the vignette to get started.
 vignette(topic = "worldpa")
 ```
 
-Functions documentation can be found at: [https://frbcesab.github.io/worldpa/](https://frbcesab.github.io/worldpa/)
+Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/index.html](https://frbcesab.github.io/worldpa/reference/index.html)
