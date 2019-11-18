@@ -109,15 +109,31 @@ get_wdpa <- function(regions, countries, path = ".") {
       filename <- paste0("WDPA_", month, year, "_", iso)
       url      <- paste0(base_url, filename, "?type=shapefile", collapse = "")
 
-      download.file(
-        url      = url,
-        destfile = file.path(path, paste0(filename, ".zip"))
+      attempt <- tryCatch({
+        download.file(
+          url      = url,
+          destfile = file.path(path, paste0(filename, ".zip"))
+        )},
+        error = function(e){}
       )
 
-      unzip(
-        zipfile  = file.path(path, paste0(filename, ".zip")),
-        exdir    = path
-      )
+      if (!is.null(attempt)) {
+
+        unzip(
+          zipfile  = file.path(path, paste0(filename, ".zip")),
+          exdir    = path
+        )
+
+        rms <- file.remove(file.path(path, paste0(filename, ".zip")))
+
+        fls <- list.files(
+          path      = path,
+          pattern   = "shapefile-points",
+          full.name = TRUE
+        )
+
+        rms <- file.remove(fls)
+      }
     }
   }
 }
