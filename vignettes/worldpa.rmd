@@ -118,6 +118,62 @@ get_wdpa(countries = "Spain", path = "C:/Users/username/Desktop/wdpa") # Windows
 
 # Study case
 
+Here we want to download all PA for the African continent and then to merge all shapefiles into one big file.
+
+First, let's download all PA shapefiles.
+
 ```{r echo=TRUE, eval=FALSE}
-get_wdpa(regions = "Africa", path = "Desktop/WDPA")
+# Download PA for Africa         ----------
+get_wdpa(regions = "Africa")
 ```
+
+Now, we want to read these shapefiles in R using the `sf` package. So let's install and load this package.
+
+```{r echo=TRUE, eval=FALSE}
+install.packages("sf")
+library(sf)
+```
+
+We can now read and merge these shapefiles using the functions `sf::st_read()` and `sf::rbind()`.
+
+```{r echo=TRUE, eval=FALSE}
+# List all downloaded shapefiles ----------
+fls <- list.files(pattern    = "\\.shp$")
+
+# Read and merge all shapefiles  ----------
+for (i in 1:length(fls)) {
+
+  if (i == 1) {
+
+    shape <- st_read(
+      dsn = ".",
+      layer = gsub("\\.shp$", "", fls[i])
+    )
+
+  } else {
+
+    shape <- rbind(
+      shape,
+      st_read(
+        dsn = ".",
+        layer = gsub("\\.shp$", "", fls[i])
+      )
+    )
+  }
+}
+```
+
+Finally, then export this new shapefile with the function `sf::st_write()`.
+
+```{r echo=TRUE, eval=FALSE}
+st_write(
+  obj    = shape,
+  dsn    = ".",
+  layer  = "africa_protected_areas",
+  driver = "ESRI Shapefile"
+)
+```
+
+That's all.
+
+Do not forget to visit this page to understand terms and conditions of the WDPA: [https://www.protectedplanet.net/c/terms-and-conditions](https://www.protectedplanet.net/c/terms-and-conditions).
