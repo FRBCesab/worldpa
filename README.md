@@ -8,31 +8,31 @@ worldpa <img src="inst/img/worldpa-sticker.png" height="120" align="right"/>
 Overview
 --------
 
-The R package is an interface of the World Database on Protected Areas (WDPA) hosted in the Protected planet website: ![https://www.protectedplanet.net](https://www.protectedplanet.net). The main function, `get_wdpa()` downloads spatial shapefile of protected areas at three different levels: country, region or the world.
+The R package is an interface of the World Database on Protected Areas (WDPA) hosted in the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net). The main function, `get_wdpa()` downloads spatial shapefile of protected areas at three different levels: country, region or the world.
 
 
 
 Terms and conditions
 --------
 
-You must ensure that the following citations is always clearly reproduced in any publication or analysis involving the Protected Planet Materials in any derived form or format:
+You must ensure that the following citation is always clearly reproduced in any publication or analysis involving the Protected Planet Materials in any derived form or format:
 
 > UNEP-WCMC and IUCN (`YEAR`) Protected Planet: The World Database on Protected Areas (WDPA). Cambridge, UK: UNEP-WCMC and IUCN. Available at: www.protectedplanet.net (dataset downloaded the `YEAR/MONTH`).
 
-For further details on terms and condition of the WDPA usage, please visit the page: ![https://www.protectedplanet.net/c/terms-and-conditions](https://www.protectedplanet.net/c/terms-and-conditions).
+For further details on terms and conditions of the WDPA usage, please visit the page: [https://www.protectedplanet.net/c/terms-and-conditions](https://www.protectedplanet.net/c/terms-and-conditions).
 
 
 
 Installation
 --------
 
-To install the package `worldpa` from GitHub, first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN.
+First install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN.
 
 ```r
 install.packages("devtools", dependencies = TRUE)
 ```
 
-Then install the `worldpa` package:
+Then install the `worldpa` package from GitHub.
 
 ```r
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
@@ -43,14 +43,16 @@ devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 Getting started
 --------
 
-Load the package `worldpa` in the R memory:
+Load the package `worldpa` in the R memory.
 
 ```r
 library(worldpa)
 ```
 
-And browse the vignette to gets started:
+And browse the vignette to get started.
 
 ```r
 vignette(topic = "worldpa")
 ```
+
+Functions documentation can be found at: [https://frbcesab.github.io/worldpa/](https://frbcesab.github.io/worldpa/)
