@@ -1,0 +1,16 @@
+---
+title: "worldpa: An interface to the World Database on Protected Areas (WDPA)"
+author: "Nicolas Casajus"
+date: "`r Sys.Date()`"
+lang: english
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+vignette: >
+  %\VignetteIndexEntry{An introduction of the package worldpa}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In construction...
