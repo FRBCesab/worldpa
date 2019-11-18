@@ -1,6 +1,6 @@
 ---
-title: "worldpa: An interface to the World Database on Protected Areas (WDPA)"
-author: "Nicolas Casajus"
+title: "worldpa: an interface to the World Database on Protected Areas (WDPA)"
+author: "Nicolas CASAJUS < nicolas.casajus@fondationbiodiversite.fr >"
 date: "`r Sys.Date()`"
 lang: english
 output:
@@ -39,7 +39,6 @@ library(worldpa)
 ```
 
 ```{r echo=FALSE, eval=TRUE}
-# Get the world regions names    ----------
 library(worldpa)
 ```
 
@@ -48,21 +47,21 @@ library(worldpa)
 
 This package contains four main functions:
 
-- `get_regions()`: returns the world regions names according to the UNEP classification
-- `get_countries()`: returns the world countries names according to the UNEP classification
-- `get_isocodes()`: returns the ISO3 code of all countries of the world
-- `get_wdpa()`: downloads world protected areas shapefiles (core function)
+- [`get_regions()`](https://frbcesab.github.io/worldpa/reference/get_regions.html): returns the world regions names according to the UNEP classification
+- [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): returns the world countries names according to the UNEP classification
+- [`get_isocodes()`](https://frbcesab.github.io/worldpa/reference/get_isocodes.html): returns the ISO3 code of all countries of the world
+- [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html): downloads world protected areas shapefiles (core function)
 
-Let's explore the function `get_regions()`.
+Let's explore the function [`get_regions()`](https://frbcesab.github.io/worldpa/reference/get_regions.html).
 
 ```{r echo=TRUE, eval=TRUE}
 # Get the world regions names    ----------
 get_regions()
 ```
 
-This function returns the correct spelling of world regions, useful to set the parameter `regions` of the function `get_wdpa()`.
+This function returns the correct spelling of world regions, useful to set the parameter `regions` of the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html).
 
-Now, let's take a look at the function `get_countries()`.
+Now, let's take a look at the function [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html).
 
 ```{r echo=TRUE, eval=TRUE}
 # Get the world countries names  ----------
@@ -75,9 +74,9 @@ length(countries)
 countries[1:10]
 ```
 
-This function returns the correct spelling of world countries, useful to set the parameter `countries` of the function `get_wdpa()`.
+This function returns the correct spelling of world countries, useful to set the parameter `countries` of the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html).
 
-The function `get_isocodes()` returns the ISO3 code (three-letters acronym) of all countries of the world.
+The function [`get_isocodes()`](https://frbcesab.github.io/worldpa/reference/get_isocodes.html) returns the ISO3 code (three-letters acronym) of all countries of the world.
 
 ```{r echo=TRUE, eval=TRUE}
 # Get the countries ISO3 codes   ----------
@@ -87,7 +86,7 @@ iso3 <- get_isocodes()
 head(iso3, 20)
 ```
 
-Finally, the use of the function `get_wdpa()` is quite simple:
+Finally, the use of the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) is quite straightforward:
 
 ```{r echo=TRUE, eval=FALSE}
 # Download PA for one country    ----------
@@ -114,7 +113,7 @@ get_wdpa(countries = "Spain", path = "/Users/username/Desktop/wdpa")   # Unix
 get_wdpa(countries = "Spain", path = "C:/Users/username/Desktop/wdpa") # Windows
 ```
 
-**Note:** the function `get_wdpa()` does not return any object on R: shapefiles are directly written on the hard drive.
+**Note:** the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) does not return any object on R: shapefiles are directly written on the hard drive.
 
 
 # Study case
