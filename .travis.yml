@@ -11,6 +11,7 @@ notifications:
 r_packages:
   - rvest
   - covr
+  - devtools
 
 after_success:
   - Rscript -e 'devtools::install()'

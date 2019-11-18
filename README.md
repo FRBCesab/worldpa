@@ -1,4 +1,4 @@
-worldpa <img src="inst/img/worldpa-sticker.png" height="120" align="right"/>
+worldpa <img src="hexsticker.png" height="120" align="right"/>
 =========================================================
 
 [![Build Status](https://travis-ci.org/FRBCesab/worldpa.svg?branch=master)](https://travis-ci.org/FRBCesab/worldpa)
