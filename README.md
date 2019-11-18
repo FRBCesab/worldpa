@@ -3,10 +3,23 @@ worldpa <img src="inst/img/worldpa-sticker.png" height="120" align="right"/>
 
 [![Build Status](https://travis-ci.org/FRBCesab/worldpa.svg?branch=master)](https://travis-ci.org/FRBCesab/worldpa) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/FRBCesab/worldpa?branch=master&svg=true)](https://ci.appveyor.com/project/FRBCesab/worldpa) [![](https://img.shields.io/badge/licence-GPLv3-8f10cb.svg)](http://www.gnu.org/licenses/gpl.html)
 
+
+
 Overview
 --------
 
-In construction...
+The R package is an interface of the World Database on Protected Areas (WDPA) hosted in the Protected planet website: ![https://www.protectedplanet.net](https://www.protectedplanet.net). The main function, `get_wdpa()` downloads spatial shapefile of protected areas at three different levels: country, region or the world.
+
+
+
+Terms and conditions
+--------
+
+You must ensure that the following citations is always clearly reproduced in any publication or analysis involving the Protected Planet Materials in any derived form or format:
+
+> UNEP-WCMC and IUCN (`YEAR`) Protected Planet: The World Database on Protected Areas (WDPA). Cambridge, UK: UNEP-WCMC and IUCN. Available at: www.protectedplanet.net (dataset downloaded the `YEAR/MONTH`).
+
+For further details on terms and condition of the WDPA usage, please visit the page: ![https://www.protectedplanet.net/c/terms-and-conditions](https://www.protectedplanet.net/c/terms-and-conditions).
 
 
 
@@ -23,8 +36,6 @@ Then install the `worldpa` package:
 
 ```r
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
-
-library(worldpa)
 ```
 
 
@@ -32,7 +43,7 @@ library(worldpa)
 Getting started
 --------
 
-Load the package `worldpa` in the r memory:
+Load the package `worldpa` in the R memory:
 
 ```r
 library(worldpa)
