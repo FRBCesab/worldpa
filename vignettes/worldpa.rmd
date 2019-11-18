@@ -38,6 +38,11 @@ devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 library(worldpa)
 ```
 
+```{r echo=FALSE, eval=TRUE}
+# Get the world regions names    ----------
+library(worldpa)
+```
+
 
 # Getting started
 
