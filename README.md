@@ -16,17 +16,14 @@ Installation
 To install the package `worldpa` from GitHub, first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN.
 
 ```r
-### Install the < devtools > package
 install.packages("devtools", dependencies = TRUE)
 ```
 
 Then install the `worldpa` package:
 
 ```r
-### Install the < worldpa > package from GitHub
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 
-### Load the < worldpa > package
 library(worldpa)
 ```
 
@@ -35,7 +32,14 @@ library(worldpa)
 Getting started
 --------
 
+Load the package `worldpa` in the r memory:
+
 ```r
-### Browse the < worldpa > package vignette
+library(worldpa)
+```
+
+And browse the vignette to gets started:
+
+```r
 vignette(topic = "worldpa")
 ```
