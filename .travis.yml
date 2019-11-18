@@ -1,6 +1,7 @@
 language: r
 warnings_are_errors: false
 sudo: required
+cache: packages
 
 notifications:
   email:
@@ -9,10 +10,12 @@ notifications:
 
 r_packages:
   - rvest
+  - covr
 
 after_success:
   - Rscript -e 'devtools::install()'
   - Rscript -e 'pkgdown::build_site()'
+  - Rscript -e 'covr::codecov()'
 
 deploy:
   provider: pages
