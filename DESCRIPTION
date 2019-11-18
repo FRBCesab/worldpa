@@ -1,7 +1,7 @@
 Package: worldpa
 Type: Package
 Title: API-based R package to download World protected areas shapefile
-Version: 0.0.0.9000
+Version: 1.0.0.0
 Date: 2019-11-15
 Author: Nicolas Casajus [cre, aut]
 Maintainer: Nicolas Casajus <nicolas.casajus@fondationbiodiversite.fr>
@@ -14,7 +14,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   rvest
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
