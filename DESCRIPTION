@@ -14,7 +14,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     rvest,
-    httr
+    httr,
+    jsonlite
 Suggests:
     knitr,
     rmarkdown,
