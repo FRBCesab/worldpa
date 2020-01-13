@@ -1,3 +1,27 @@
+#' @title Get the list of countries listed by the UNEP
+#'
+#' @description This function gets the list of countries listed by the UNEP.
+#'
+#' @param update [boolean] If \code{FALSE}, import package dataset. If \code{TRUE}, use the WDPA API to get an up-to-date version.
+#' @param sleep [numeric] The time interval to suspend between each API request (in seconds).
+#'
+#' @return A data frame with countries informations. See \code{wdpa_countries} for further details.
+#'
+#' @importFrom httr GET
+#' @importFrom jsonlite fromJSON
+#' @importFrom utils data
+#'
+#' @export
+#'
+#' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
+#'
+#' @examples
+#'
+#' ## get_countries(update = FALSE)
+#' ## get_countries(update = TRUE, sleep = 0.25)
+
+
+
 get_countries <- function(update = FALSE, sleep = 0) {
 
   if (!update) {

@@ -17,7 +17,10 @@
 #' @export
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
-
+#'
+#' @examples
+#'
+#' ## get_token()
 
 get_token <- function(key = "WDPA_KEY") {
 
