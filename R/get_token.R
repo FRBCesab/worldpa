@@ -1,12 +1,18 @@
-#' @title {{ ... }}
+#' @title Check Protected Planet API token
 #'
-#' @description {{ ... }}
+#' @description This function checks if the user has stored a valid Protected Planet API token in the R environment (.Renviron) file under the key 'WDPA_KEY'.
 #'
-#' @param key [string] {{ ... }}
+#' @param key [string] The name of the token value stored in the .Renviron file (recommended key name: 'WDPA_KEY').
 #'
-#' @return {{ ... }}
+#' @return A vector of length one with the value of the API token.
 #'
-#' @details {{ ... }}
+#' @details Before using this package for the first time, the user must follow these steps:
+#' \itemize{
+#'   \item Please fill in the form available at: \link{https://api.protectedplanet.net/request} to obtain a personal API token;
+#'   \item Store the token in the .Renviron file under the key 'WDPA'. User can use the function \code{usethis::edit_r_environ()}.
+#' }
+#'
+#' @export
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 
@@ -41,7 +47,7 @@ get_token <- function(key = "WDPA_KEY") {
 
   if (response$status != 200) {
 
-    stop("Something went wrong with your API token.")
+    stop("Something go wrong with your API token.")
   }
 
   return(wdpa_key)

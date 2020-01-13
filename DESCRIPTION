@@ -2,10 +2,10 @@ Package: worldpa
 Type: Package
 Title: API-based R package to download World protected areas shapefile
 Version: 1.0.0.0
-Date: 2019-11-15
+Date: 2020-01-13
 Author: Nicolas Casajus [cre, aut]
 Maintainer: Nicolas Casajus <nicolas.casajus@fondationbiodiversite.fr>
-Description: API-based R package to download World protected areas shapefile from the Protected Planet website (https://www.protectedplanet.net).
+Description: API-based R package to download World protected areas shapefiles from the Protected Planet website (https://www.protectedplanet.net).
 URL: https://github.com/frbcesab/worldpa
 BugReports: https://github.com/frbcesab/worldpa/issues
 Depends: R (>= 3.6.0)
@@ -21,4 +21,4 @@ Suggests:
     pkgdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
