@@ -4,23 +4,20 @@
 \alias{get_countries}
 \title{Get the list of countries listed by the UNEP}
 \usage{
-get_countries(update = FALSE, sleep = 0)
+get_countries(sleep = 0)
 }
 \arguments{
-\item{update}{[boolean] If \code{FALSE}, import package dataset. If \code{TRUE}, use the WDPA API to get an up-to-date version.}
-
 \item{sleep}{[numeric] The time interval to suspend between each API request (in seconds).}
 }
 \value{
 A data frame with countries informations. See \code{wdpa_countries} for further details.
 }
 \description{
-This function gets the list of countries listed by the UNEP.
+This function gets the list of countries listed by the UNEP using the WDPA API.
 }
 \examples{
 
-## get_countries(update = FALSE)
-## get_countries(update = TRUE, sleep = 0.25)
+## get_countries(sleep = 0.25)
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}

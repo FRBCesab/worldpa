@@ -1,5 +1,5 @@
 #' @title List of countries distributed in the UNEP regions
-#' @description This dataset contains informations about countries listed on the Protected Planet project (\link{https://www.protectedplanet.net})
+#' @description This dataset contains informations about countries listed on the Protected Planet project (\url{https://www.protectedplanet.net})
 #'
 #' @format A data frame with 248 rows (countries) and 5 columns:
 #' \describe{
@@ -12,7 +12,7 @@
 #'
 #' This dataset has been built using the Protected Planet API the 2020/01/13. For a more up-to-date version, please use the function \code{wdpa::get_countries(update = TRUE)}.
 #'
-#' @source \link{https://www.protectedplanet.net/c/unep-regions}
+#' @source \url{https://www.protectedplanet.net/c/unep-regions}
 
 
 "wdpa_countries"

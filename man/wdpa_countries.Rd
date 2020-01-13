@@ -15,12 +15,12 @@
 
 This dataset has been built using the Protected Planet API the 2020/01/13. For a more up-to-date version, please use the function \code{wdpa::get_countries(update = TRUE)}.}
 \source{
-\link{https://www.protectedplanet.net/c/unep-regions}
+\url{https://www.protectedplanet.net/c/unep-regions}
 }
 \usage{
 wdpa_countries
 }
 \description{
-This dataset contains informations about countries listed on the Protected Planet project (\link{https://www.protectedplanet.net})
+This dataset contains informations about countries listed on the Protected Planet project (\url{https://www.protectedplanet.net})
 }
 \keyword{datasets}

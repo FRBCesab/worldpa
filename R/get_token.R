@@ -8,7 +8,7 @@
 #'
 #' @details Before using this package for the first time, the user must follow these steps:
 #' \itemize{
-#'   \item Fill in the form available at: \link{https://api.protectedplanet.net/request} to obtain a personal API token;
+#'   \item Fill in the form available at: \url{https://api.protectedplanet.net/request} to obtain a personal API token;
 #'   \item Store the token in the .Renviron file under the key 'WDPA'. User can use the function \code{usethis::edit_r_environ()}.
 #' }
 #'
