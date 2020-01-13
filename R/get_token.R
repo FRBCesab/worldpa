@@ -12,6 +12,8 @@
 #'   \item Store the token in the .Renviron file under the key 'WDPA'. User can use the function \code{usethis::edit_r_environ()}.
 #' }
 #'
+#' @importFrom httr GET
+#'
 #' @export
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
