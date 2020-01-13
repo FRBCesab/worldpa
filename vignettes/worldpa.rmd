@@ -80,37 +80,37 @@ The function [`get_isocodes()`](https://frbcesab.github.io/worldpa/reference/get
 
 ```{r echo=TRUE, eval=TRUE}
 # Get the countries ISO3 codes   ----------
-iso3 <- get_isocodes()
-
-# Print the first twenty rows    ----------
-head(iso3, 20)
+# iso3 <- get_isocodes()
+#
+# # Print the first twenty rows    ----------
+# head(iso3, 20)
 ```
 
 Finally, the use of the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) is quite straightforward:
 
 ```{r echo=TRUE, eval=FALSE}
-# Download PA for one country    ----------
-get_wdpa(countries = "Spain")
-
-# Download PA for two countries  ----------
-get_wdpa(countries = c("Portugal", "Spain"))
-
-# Download PA for one region     ----------
-get_wdpa(regions = "Africa")
-
-# Download PA for two regions    ----------
-get_wdpa(regions = c("Europe", "Africa"))
-
-# Download PA for the world      ----------
-get_wdpa() # Not recommended (too big)
+# # Download PA for one country    ----------
+# get_wdpa(countries = "Spain")
+#
+# # Download PA for two countries  ----------
+# get_wdpa(countries = c("Portugal", "Spain"))
+#
+# # Download PA for one region     ----------
+# get_wdpa(regions = "Africa")
+#
+# # Download PA for two regions    ----------
+# get_wdpa(regions = c("Europe", "Africa"))
+#
+# # Download PA for the world      ----------
+# get_wdpa() # Not recommended (too big)
 ```
 
 The argument `path` can be set to change the directory where shapefiles will be written. The default is the current directory.
 Let's say we want to save shapefiles in the directory **wdpa** located on the **Desktop**:
 
 ```{r echo=TRUE, eval=FALSE}
-get_wdpa(countries = "Spain", path = "/Users/username/Desktop/wdpa")   # Unix
-get_wdpa(countries = "Spain", path = "C:/Users/username/Desktop/wdpa") # Windows
+# get_wdpa(countries = "Spain", path = "/Users/username/Desktop/wdpa")   # Unix
+# get_wdpa(countries = "Spain", path = "C:/Users/username/Desktop/wdpa") # Windows
 ```
 
 **Note:** the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) does not return any object on R: shapefiles are directly written on the hard drive.
@@ -124,7 +124,7 @@ First, let's download all PA shapefiles.
 
 ```{r echo=TRUE, eval=FALSE}
 # Download PA for Africa         ----------
-get_wdpa(regions = "Africa")
+# get_wdpa(regions = "Africa")
 ```
 
 Now, we want to read these shapefiles in R using the `sf` package. So let's install and load this package.
@@ -138,40 +138,40 @@ We can now read and merge these shapefiles using the functions `sf::st_read()` a
 
 ```{r echo=TRUE, eval=FALSE}
 # List all downloaded shapefiles ----------
-fls <- list.files(pattern    = "\\.shp$")
-
-# Read and merge all shapefiles  ----------
-for (i in 1:length(fls)) {
-
-  if (i == 1) {
-
-    shape <- st_read(
-      dsn = ".",
-      layer = gsub("\\.shp$", "", fls[i])
-    )
-
-  } else {
-
-    shape <- rbind(
-      shape,
-      st_read(
-        dsn = ".",
-        layer = gsub("\\.shp$", "", fls[i])
-      )
-    )
-  }
-}
+# fls <- list.files(pattern    = "\\.shp$")
+#
+# # Read and merge all shapefiles  ----------
+# for (i in 1:length(fls)) {
+#
+#   if (i == 1) {
+#
+#     shape <- st_read(
+#       dsn = ".",
+#       layer = gsub("\\.shp$", "", fls[i])
+#     )
+#
+#   } else {
+#
+#     shape <- rbind(
+#       shape,
+#       st_read(
+#         dsn = ".",
+#         layer = gsub("\\.shp$", "", fls[i])
+#       )
+#     )
+#   }
+# }
 ```
 
 Finally, then export this new shapefile with the function `sf::st_write()`.
 
 ```{r echo=TRUE, eval=FALSE}
-st_write(
-  obj    = shape,
-  dsn    = ".",
-  layer  = "africa_protected_areas",
-  driver = "ESRI Shapefile"
-)
+# st_write(
+#   obj    = shape,
+#   dsn    = ".",
+#   layer  = "africa_protected_areas",
+#   driver = "ESRI Shapefile"
+# )
 ```
 
 That's all.
