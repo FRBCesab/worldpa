@@ -2,7 +2,7 @@
 #'
 #' @description This function checks if the user has stored a valid Protected Planet API token in the R environment (.Renviron) file under the key 'WDPA_KEY'.
 #'
-#' @param key [string] The name of the token value stored in the .Renviron file (recommended key name: 'WDPA_KEY').
+#' @param key The name of the token value stored in the .Renviron file (recommended key name: 'WDPA_KEY').
 #'
 #' @return A vector of length one with the value of the API token.
 #'

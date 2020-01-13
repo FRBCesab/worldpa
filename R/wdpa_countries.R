@@ -10,7 +10,7 @@
 #'   \item{pas_count}{Number of protected areas per country.}
 #' }
 #'
-#' This dataset has been built using the Protected Planet API the 2020/01/13. For a more up-to-date version, please use the function \code{wdpa::get_countries(update = TRUE)}.
+#' This dataset has been built using the Protected Planet API the 2020/01/13. For a more up-to-date version, please use the function [get_countries()].
 #'
 #' @source \url{https://www.protectedplanet.net/c/unep-regions}
 

@@ -2,9 +2,9 @@
 #'
 #' @description This function gets the list of countries listed by the UNEP using the WDPA API.
 #'
-#' @param sleep [numeric] The time interval to suspend between each API request (in seconds).
+#' @param sleep The time interval to suspend between each API request (in seconds).
 #'
-#' @return A data frame with countries informations. See \code{wdpa_countries} for further details.
+#' @return A data frame with countries informations. See [wdpa_countries] for further details.
 #'
 #' @importFrom httr GET
 #' @importFrom jsonlite fromJSON
