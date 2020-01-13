@@ -7,19 +7,19 @@
 get_token(key = "WDPA_KEY")
 }
 \arguments{
-\item{key}{The name of the token value stored in the .Renviron file (recommended key name: 'WDPA_KEY').}
+\item{key}{The name of the token value stored in the .Renviron file (recommended key name: \code{WDPA_KEY}).}
 }
 \value{
 A vector of length one with the value of the API token.
 }
 \description{
-This function checks if the user has stored a valid Protected Planet API token in the R environment (.Renviron) file under the key 'WDPA_KEY'.
+This function checks if the user has stored a valid Protected Planet API token in the R environment (.Renviron) file under the key \code{WDPA_KEY}.
 }
 \details{
 Before using this package for the first time, the user must follow these steps:
 \itemize{
   \item Fill in the form available at: \url{https://api.protectedplanet.net/request} to obtain a personal API token;
-  \item Store the token in the .Renviron file under the key 'WDPA'. User can use the function \code{usethis::edit_r_environ()}.
+  \item Store the token in the .Renviron file under the key \code{WDPA_KEY}. User can use the function \code{usethis::edit_r_environ()}.
 }
 }
 \examples{
