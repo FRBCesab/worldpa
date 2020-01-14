@@ -21,9 +21,8 @@ vignette: >
 
 This R package is an interface to the World Database on Protected Areas (WDPA)
 hosted on the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
-It allows user to download spatial shapefiles of protected areas (PA) for world countries using WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
+It allows user to download spatial shapefiles of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
-<br />
 
 This package contains three main functions:
 
@@ -31,12 +30,7 @@ This package contains three main functions:
 - [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): get the world countries names and ISO-3 code (informations also available in the internal dataset `wdpa_countries`);
 - [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html): download world protected areas shapefiles for one specified country.
 
-<br />
 
-
-# Installation
-
-<hr />
 
 To install this package from [GitHub](https://www.github.com/frbcesab/worldpa),
 first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
@@ -67,7 +61,7 @@ library(worldpa)
 
 <br />
 
-# Managing API token
+# Managing WDPA API token
 
 <hr />
 
@@ -80,7 +74,7 @@ As recommended by Hadley Wickham in it [Managing secrets vignette](https://cran.
 you have to stored your API Token as an R Environment variable (a name-value pairs)
 listed in the `.Renviron` file in your home directory.
 
-Use the function `usethis::edit_r_environ()` to open this file and add this line (by replacing z999zzz... by your Personal WDPA API Token):
+Use the function `usethis::edit_r_environ()` to open this file and add this line (by replacing `z999zzz...` with your Personal WDPA API Token):
 
 ```
 WDPA_KEY=z999zzz9zzz999999z9z99zz999zz999
@@ -104,4 +98,21 @@ get_token()
 # Getting countries informations
 
 <hr />
-...
+
+The internal dataset `wdpa_countries` contains different informations on world countries (country and UNEP region names, ISO code and number of protected areas).
+
+
+```{r echo=TRUE, eval=TRUE}
+# Load internal dataset
+data(wdpa_countries)
+
+# Print first rows of the dataset
+head(wdpa_countries, 10)
+```
+
+As the WDPA is updated every month, you can get an updated version of this dataset by using the function [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html):
+
+```{r echo=TRUE, eval=FALSE}
+# Get UNEP world countries informations
+get_countries()
+```
