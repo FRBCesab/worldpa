@@ -17,25 +17,29 @@ vignette: >
 
 # Introduction
 
+<hr />
+
 This R package is an interface to the World Database on Protected Areas (WDPA)
-hosted in the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
+hosted on the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
 It allows user to download spatial shapefiles of protected areas (PA) for world countries.
 
 <br />
 
 # Installation
 
+<hr />
+
 To install this package from [GitHub](https://www.github.com/frbcesab/worldpa),
 first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
 
 ```{r echo=TRUE, eval=FALSE}
-# Install the devtools package
+# Install the {devtools} package
 install.packages("devtools", dependencies = TRUE)
 
-# Install the worldpa package
+# Install the {worldpa} package
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 
-# Load the worldpa package
+# Load the {worldpa} package
 library(worldpa)
 ```
 
@@ -46,6 +50,8 @@ library(worldpa)
 <br />
 
 # Getting started
+
+<hr /><br />
 
 This package contains four main functions:
 
