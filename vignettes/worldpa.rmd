@@ -157,9 +157,14 @@ The function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdp
 
 Finally, let's vizualise the shapefile (the `ggplot2` way also works):
 
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
+install.packages("sf")
+install.packages("maps")
+```
+
 ```{r echo=TRUE, eval=TRUE}
-library(sf)
-library(maps)
+library("sf")
+library("maps")
 
 # Plot Georgia administrative boundaries
 map(regions = "Georgia")
