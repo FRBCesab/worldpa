@@ -2,5 +2,11 @@
 
 export(get_countries)
 export(get_token)
+export(get_wdpa)
+importFrom(geojsonsf,geojson_sf)
 importFrom(httr,GET)
 importFrom(jsonlite,fromJSON)
+importFrom(sf,st_cast)
+importFrom(sf,st_collection_extract)
+importFrom(sf,st_sf)
+importFrom(sf,st_write)

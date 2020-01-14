@@ -15,7 +15,9 @@ LazyData: true
 Imports:
     rvest,
     httr,
-    jsonlite
+    jsonlite,
+    sf,
+    geojsonsf
 Suggests:
     knitr,
     rmarkdown,

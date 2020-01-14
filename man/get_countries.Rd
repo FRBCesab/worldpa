@@ -10,7 +10,7 @@ get_countries(sleep = 0)
 \item{sleep}{The time interval to suspend between each API request (in seconds).}
 }
 \value{
-A data frame with countries informations. See wdpa_countries() for further details.
+A data frame with countries informations. See \code{wdpa_countries()} for further details.
 }
 \description{
 This function gets the list of countries listed by the UNEP using the WDPA API.
