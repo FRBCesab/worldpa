@@ -53,7 +53,11 @@ This package contains four main functions:
 
 Let's explore the function [`get_token()`](https://frbcesab.github.io/worldpa/reference/get_token.html).
 
-```{r echo=TRUE, eval=TRUE}
+```{r echo=TRUE, eval=FALSE}
 # Checks if your WDPA token is correctly stored
 get_token()
+```
+
+```{r echo=FALSE, eval=TRUE}
+Sys.getenv("WDPA_FAKE")
 ```

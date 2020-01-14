@@ -22,6 +22,7 @@ before_install:
 
 after_install:
   - echo "WDPA_KEY=$WDPA_KEY" >> ~/.Renviron
+  - echo "WDPA_FAKE=$WDPA_FAKE" >> ~/.Renviron
 
 deploy:
   provider: pages
