@@ -12,7 +12,9 @@ worldpa <img src="man/figures/hexsticker.png" height="120" align="right"/>
 Overview
 --------
 
-The R package is an interface of the World Database on Protected Areas (WDPA) hosted in the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net). The main function, `get_wdpa()` downloads spatial shapefile of protected areas at three different levels: country, region or the world.
+This R package is an interface to the World Database on Protected Areas (WDPA)
+hosted on the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
+It allows user to download spatial shapefiles of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
 
 
@@ -25,6 +27,15 @@ You must ensure that the following citation is always clearly reproduced in any 
 
 For further details on terms and conditions of the WDPA usage, please visit the page: [https://www.protectedplanet.net/c/terms-and-conditions](https://www.protectedplanet.net/c/terms-and-conditions).
 
+
+Prerequisites
+--------
+
+This package uses the WDPA API to access data on world protected areas. You must
+first have obtained a Personal API Token by filling in the form available at:
+[https://api.protectedplanet.net/request](https://api.protectedplanet.net/request).
+
+Then follow these instructions to store this token: [Managing WDPA API Token](https://frbcesab.github.io/worldpa/articles/worldpa.html#managing-wdpa-api-token)
 
 
 Installation
@@ -56,7 +67,7 @@ library(worldpa)
 And browse the vignette to get started.
 
 ```r
-vignette(topic = "worldpa")
+browseURL("https://frbcesab.github.io/worldpa/articles/worldpa.html")
 ```
 
-Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/index.html](https://frbcesab.github.io/worldpa/reference/index.html)
+Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/](https://frbcesab.github.io/worldpa/reference/)
