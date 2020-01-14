@@ -130,7 +130,7 @@ get_countries()
 Now, let's use the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) to download protected areas shapefiles for Georgia.
 
 ```{r echo=FALSE, eval=TRUE}
-option(warn = -1)
+options(warn = -1)
 ```
 
 ```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
@@ -162,7 +162,7 @@ The function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdp
 Finally, let's vizualise the shapefile (the `ggplot2` way also works):
 
 ```{r echo=FALSE, eval=TRUE}
-option(warn = 0)
+options(warn = 0)
 ```
 
 ```{r echo=TRUE, eval=TRUE}
@@ -171,8 +171,11 @@ maps::map(regions = "Georgia")
 
 # Add Georgia protected areas
 plot(sf::st_geometry(pa_sf), col = "#aaaaaa", border = NA, add = TRUE)
+
+# Plot Georgia administrative boundaries
+maps::map(add = TRUE)
 ```
 
 <br />
 
-If you have problems, please open issues at:[https://github.com/frbcesab/worldpa/issues](https://github.com/frbcesab/worldpa/issues)
+If you have problems, please open issues at: [https://github.com/frbcesab/worldpa/issues](https://github.com/frbcesab/worldpa/issues)
