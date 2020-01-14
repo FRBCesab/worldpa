@@ -19,7 +19,7 @@ vignette: >
 
 This R package is an interface to the World Database on Protected Areas (WDPA)
 hosted in the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
-It allows user to download spatial shapefiles of protected areas (PA) at three different levels: country, region or the world.
+It allows user to download spatial shapefiles of protected areas (PA) for world countries.
 
 
 # Installation
@@ -28,13 +28,13 @@ To install this package from [GitHub](https://www.github.com/frbcesab/worldpa),
 first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
 
 ```{r echo=TRUE, eval=FALSE}
-# Install the devtools package   ----------
+# Install the devtools package
 install.packages("devtools", dependencies = TRUE)
 
-# Install the worldpa package    ----------
+# Install the worldpa package
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 
-# Load the worldpa package       ----------
+# Load the worldpa package
 library(worldpa)
 ```
 
@@ -45,4 +45,15 @@ library(worldpa)
 
 # Getting started
 
-...
+This package contains four main functions:
+
+- [`get_token()`](https://frbcesab.github.io/worldpa/reference/get_token.html): checks if your WDPA token is correctly stored;
+- [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): returns the world countries names according to the UNEP classification;
+- [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html): downloads world protected areas shapefiles.
+
+Let's explore the function [`get_token()`](https://frbcesab.github.io/worldpa/reference/get_token.html).
+
+```{r echo=TRUE, eval=TRUE}
+# Checks if your WDPA token is correctly stored
+get_token()
+```

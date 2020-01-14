@@ -20,6 +20,9 @@ after_success:
 before_install:
   - sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev
 
+after_install:
+  - echo "WDPA_KEY=$WDPA_KEY" >> ~/.Renviron
+
 deploy:
   provider: pages
   skip-cleanup: true
