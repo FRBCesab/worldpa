@@ -1,5 +1,5 @@
 ---
-title: "worldpa: an interface to the World Database on Protected Areas (WDPA)"
+title: "worldpa: An interface to the World Database on Protected Areas (WDPA)"
 author: "Nicolas CASAJUS < nicolas.casajus@fondationbiodiversite.fr >"
 date: "`r Sys.Date()`"
 lang: english
@@ -13,7 +13,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<br />
 
 # Introduction
 
@@ -30,7 +29,7 @@ This package contains three main functions:
 - [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): get world countries informations;
 - [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html): download world protected areas shapefiles for one specified country.
 
-
+<br />
 
 To install this package from [GitHub](https://www.github.com/frbcesab/worldpa),
 first install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
@@ -95,7 +94,7 @@ get_token()
 
 <br />
 
-# Countries metadata
+# Getting countries metadata
 
 <hr />
 
@@ -105,7 +104,9 @@ The internal dataset `wdpa_countries` contains different informations on world c
 ```{r echo=TRUE, eval=TRUE}
 # Load internal dataset
 data(wdpa_countries)
+```
 
+```{r echo=FALSE, eval=TRUE}
 # Print first rows of the dataset
 head(wdpa_countries, 10)
 ```
@@ -122,8 +123,19 @@ get_countries()
 
 <br />
 
-# Download protected areas shapefiles
+# Getting protected areas shapefiles
 
 <hr />
 
-...
+```{r echo=TRUE, eval=TRUE}
+
+wdpa_countries[grep("Georgia", wdpa_countries[ , "country_name"]), ]
+
+pa_sf <- get_wdpa(isocode = "GEO")
+
+print(pa_sf)
+
+dir()
+
+plot(pa_sf)
+```
