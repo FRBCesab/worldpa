@@ -158,8 +158,11 @@ The function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdp
 Finally, let's vizualise the shapefile (the `ggplot2` way also works):
 
 ```{r echo=TRUE, eval=TRUE}
+library(sf)
+library(maps)
+
 # Plot Georgia administrative boundaries
-maps::map(regions = "Georgia")
+map(regions = "Georgia")
 
 # Add Georgia protected areas
 plot(st_geometry(pa_sf), col = "#aaaaaa", border = NA, add = TRUE)
