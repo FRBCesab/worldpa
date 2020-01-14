@@ -27,7 +27,7 @@ It allows user to download spatial shapefiles of protected areas (PA) for world 
 This package contains three main functions:
 
 - [`get_token()`](https://frbcesab.github.io/worldpa/reference/get_token.html): check if your WDPA token is correctly stored;
-- [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): get the world countries names and ISO-3 code (informations also available in the internal dataset `wdpa_countries`);
+- [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html): get world countries informations;
 - [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html): download world protected areas shapefiles for one specified country.
 
 
@@ -40,7 +40,7 @@ first install the package [`devtools`](http://cran.r-project.org/web/packages/de
 install.packages("devtools", dependencies = TRUE)
 
 # Install the {worldpa} package
-devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
+devtools::install_github("frbcesab/worldpa")
 
 # Load the {worldpa} package
 library(worldpa)
@@ -52,7 +52,7 @@ ls("package:worldpa")
 browseURL("https://frbcesab.github.io/worldpa/reference/")
 
 # Read this vignette
-vignette(topic = "worldpa")
+browseURL("https://frbcesab.github.io/worldpa/articles/worldpa.html")
 ```
 
 ```{r echo=FALSE, eval=TRUE}
@@ -95,7 +95,7 @@ get_token()
 
 <br />
 
-# Getting countries informations
+# Countries metadata
 
 <hr />
 
@@ -110,9 +110,20 @@ data(wdpa_countries)
 head(wdpa_countries, 10)
 ```
 
+<br />
+
 As the WDPA is updated every month, you can get an updated version of this dataset by using the function [`get_countries()`](https://frbcesab.github.io/worldpa/reference/get_countries.html):
 
 ```{r echo=TRUE, eval=FALSE}
 # Get UNEP world countries informations
 get_countries()
 ```
+
+
+<br />
+
+# Download protected areas shapefiles
+
+<hr />
+
+...
