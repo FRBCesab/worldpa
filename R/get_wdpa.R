@@ -97,8 +97,6 @@ get_wdpa <- function(isocode) {
 
   for (page in pages) {
 
-    cat("Page", page, "on", max(pages), "\r")
-
     request <- paste0(
       base_url,
       category,
@@ -141,7 +139,7 @@ get_wdpa <- function(isocode) {
   }
 
   dir.create(paste0(isocode, "_protectedareas"), showWarnings = FALSE)
-  sf::st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile")
+  sf::st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile", quiet = TRUE)
 
   return(all_pa)
 
