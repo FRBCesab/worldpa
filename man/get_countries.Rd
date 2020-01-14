@@ -16,7 +16,6 @@ A data frame with countries informations. See \code{wdpa_countries()} for furthe
 This function gets the list of countries listed by the UNEP using the WDPA API.
 }
 \examples{
-
 ## get_countries(sleep = 0.25)
 }
 \author{

@@ -14,7 +14,6 @@
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
 #' @examples
-#'
 #' ## get_countries(sleep = 0.25)
 
 

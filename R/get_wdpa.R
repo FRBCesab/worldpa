@@ -16,7 +16,6 @@
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'
 #' @examples
-#'
 #' ## Get Protected Areas for Georgia
 #'
 #' ## data(wdpa_countries)

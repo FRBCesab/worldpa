@@ -23,7 +23,6 @@ Before using this package for the first time, the user must follow these steps:
 }
 }
 \examples{
-
 ## get_token()
 }
 \author{

@@ -16,7 +16,6 @@ A MULTIPOLYGON Simple feature of protected areas defined in the EPSG 4326. The s
 This function downloads protected areas for one country using the WDPA API.
 }
 \examples{
-
 ## Get Protected Areas for Georgia
 
 ## data(wdpa_countries)
