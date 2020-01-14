@@ -127,15 +127,44 @@ get_countries()
 
 <hr />
 
-```{r echo=TRUE, eval=TRUE}
+Now, let's use the function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) to download protected areas shapefiles for Georgia.
 
+```{r echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE}
+# Get Georgia ISO-3 code
 wdpa_countries[grep("Georgia", wdpa_countries[ , "country_name"]), ]
 
-pa_sf <- get_wdpa(isocode = "GEO")
-
-print(pa_sf)
-
-dir()
-
-plot(pa_sf)
+# Download Georgia protected areas
+(pa_sf <- get_wdpa(isocode = "GEO"))
 ```
+
+The returned object is a simple feature {sf object} of `MULTIPOLYGONS`.
+
+<br />
+
+
+```{r echo=TRUE, eval=FALSE}
+# List working directory content
+list.files(recursive = TRUE)
+```
+
+```{r echo=FALSE, eval=TRUE}
+list.files(recursive = TRUE)[-5]
+```
+
+The function [`get_wdpa()`](https://frbcesab.github.io/worldpa/reference/get_wdpa.html) has also exported the protected areas as an ESRI Shapefile in the working directory.
+
+<br />
+
+Finally, let's vizualise the shapefile (the `ggplot2` way also works):
+
+```{r echo=TRUE, eval=TRUE}
+# Plot Georgia administrative boundaries
+maps::map(regions = "Georgia")
+
+# Add Georgia protected areas
+plot(st_geometry(pa_sf), col = "#aaaaaa", border = NA, add = TRUE)
+```
+
+<br />
+
+If you have problems, please open issues at:[https://github.com/frbcesab/worldpa/issues](https://github.com/frbcesab/worldpa/issues)
