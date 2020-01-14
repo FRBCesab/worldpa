@@ -9,7 +9,6 @@ notifications:
       - nicolas.casajus@fondationbiodiversite.fr
 
 r_packages:
-  - rvest
   - covr
   - devtools
 
@@ -17,6 +16,9 @@ after_success:
   - Rscript -e 'devtools::install()'
   - Rscript -e 'pkgdown::build_site()'
   - Rscript -e 'covr::codecov()'
+
+before_install:
+  - sudo apt-get install libgdal-dev libgeos-dev libproj-dev libudunits2-dev
 
 deploy:
   provider: pages
