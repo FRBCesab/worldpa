@@ -22,7 +22,9 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 2.1.0),
-    pkgdown
+    pkgdown,
+    maps,
+    sf
 VignetteBuilder: knitr
 NeedsCompilation: no
 RoxygenNote: 7.0.2

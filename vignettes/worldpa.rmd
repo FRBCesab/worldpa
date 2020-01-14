@@ -173,7 +173,7 @@ maps::map(regions = "Georgia")
 plot(sf::st_geometry(pa_sf), col = "#aaaaaa", border = NA, add = TRUE)
 
 # Plot Georgia administrative boundaries
-maps::map(add = TRUE)
+maps::map(regions = "Georgia", add = TRUE)
 ```
 
 <br />
