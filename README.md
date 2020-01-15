@@ -12,7 +12,7 @@ Overview
 --------
 
 This R package is an interface to the World Database on Protected Areas (WDPA)
-hosted on the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
+hosted on the Protected planet website ([https://www.protectedplanet.net](https://www.protectedplanet.net)) and provided by the [FRB-CESAB](https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/).
 It allows user to download spatial shapefiles of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
 
