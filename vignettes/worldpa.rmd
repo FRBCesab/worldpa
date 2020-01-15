@@ -178,4 +178,4 @@ maps::map(regions = "Georgia", add = TRUE)
 
 <br />
 
-If you have problems, please open issues at: [https://github.com/frbcesab/worldpa/issues](https://github.com/frbcesab/worldpa/issues)
+If you have any question, please open an issue at: [https://github.com/frbcesab/worldpa/issues](https://github.com/frbcesab/worldpa/issues)

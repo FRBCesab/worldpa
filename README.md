@@ -34,14 +34,13 @@ Prerequisites
 This package uses the WDPA API to access data on world protected areas. You must
 first have obtained a Personal API Token by filling in the form available at:
 [https://api.protectedplanet.net/request](https://api.protectedplanet.net/request).
-
-Then follow these instructions to store this token: [Managing WDPA API Token](https://frbcesab.github.io/worldpa/articles/worldpa.html#managing-wdpa-api-token)
+Then follow these instructions to store this token: [Managing WDPA API Token](https://frbcesab.github.io/worldpa/articles/worldpa.html#managing-wdpa-api-token).
 
 
 Installation
 --------
 
-First install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN.
+First install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
 
 ```r
 install.packages("devtools", dependencies = TRUE)
@@ -53,6 +52,7 @@ Then install the `worldpa` package from GitHub.
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 ```
 
+**Note:** Build the vignette only if you already have stored the token.
 
 
 Getting started
