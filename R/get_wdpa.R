@@ -87,60 +87,64 @@ get_wdpa <- function(isocode) {
   pas_count <- response$country$pas_count
   pages     <- 1:ceiling(pas_count / 50)
 
+  if (pas_count > 0) {
+
+    base_url      <- "https://api.protectedplanet.net/"
+    category      <- "v3/protected_areas/search/"
+    wdpa_token    <- Sys.getenv("WDPA_KEY")
+    with_geometry <- "true"
 
 
-  base_url      <- "https://api.protectedplanet.net/"
-  category      <- "v3/protected_areas/search/"
-  wdpa_token    <- Sys.getenv("WDPA_KEY")
-  with_geometry <- "true"
+    for (page in pages) {
 
+      request <- paste0(
+        base_url,
+        category,
+        "?token=", wdpa_token,
+        "&with_geometry=", "true",
+        "&country=", isocode,
+        "&per_page=", 50,
+        "&page=", page
+      )
 
-  for (page in pages) {
+      response <- httr::GET(request)
+      response <- httr::content(response, as = "text")
+      response <- jsonlite::fromJSON(response)
+      response <- response$protected_areas
 
-    request <- paste0(
-      base_url,
-      category,
-      "?token=", wdpa_token,
-      "&with_geometry=", "true",
-      "&country=", isocode,
-      "&per_page=", 50,
-      "&page=", page
-    )
+      pa_json  <- jsonlite::toJSON(response$geojson$geometry)
+      pa_sf    <- geojsonsf::geojson_sf(pa_json)
 
-    response <- httr::GET(request)
-    response <- httr::content(response, as = "text")
-    response <- jsonlite::fromJSON(response)
-    response <- response$protected_areas
+      attributs <- data.frame(
+        wdpa_id       = response$wdpa_id,
+        pa_name       = response$name,
+        country_iso3  = isocode,
+        is_marine     = response$marine,
+        designation   = response$designation$name,
+        iucn_category = response$iucn_category$name
+      )
 
-    pa_json  <- jsonlite::toJSON(response$geojson$geometry)
-    pa_sf    <- geojsonsf::geojson_sf(pa_json)
+      pa_sf <- sf::st_sf(attributs, geom = sf::st_geometry(pa_sf))
+      pa_sf <- sf::st_collection_extract(pa_sf, type = "POLYGON")
+      pa_sf <- sf::st_cast(pa_sf, "MULTIPOLYGON")
 
-    attributs <- data.frame(
-      wdpa_id       = response$wdpa_id,
-      pa_name       = response$name,
-      country_iso3  = isocode,
-      is_marine     = response$marine,
-      designation   = response$designation$name,
-      iucn_category = response$iucn_category$name
-    )
+      if (page == 1) {
 
-    pa_sf <- sf::st_sf(attributs, geom = sf::st_geometry(pa_sf))
-    pa_sf <- sf::st_collection_extract(pa_sf, type = "POLYGON")
-    pa_sf <- sf::st_cast(pa_sf, "MULTIPOLYGON")
+        all_pa <- pa_sf
 
-    if (page == 1) {
+      } else {
 
-      all_pa <- pa_sf
-
-    } else {
-
-      all_pa <- rbind(all_pa, pa_sf)
+        all_pa <- rbind(all_pa, pa_sf)
+      }
     }
+
+    dir.create(paste0(isocode, "_protectedareas"), showWarnings = FALSE)
+    sf::st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile", quiet = TRUE)
+
+    return(all_pa)
+
+  } else {
+
+    cat("The WDPA does not contain any protected areas for", isocode)
   }
-
-  dir.create(paste0(isocode, "_protectedareas"), showWarnings = FALSE)
-  sf::st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile", quiet = TRUE)
-
-  return(all_pa)
-
 }
