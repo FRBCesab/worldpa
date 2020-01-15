@@ -3,7 +3,6 @@ worldpa <img src="man/figures/hexsticker.png" height="120" align="right"/>
 
 [![Build Status](https://travis-ci.org/FRBCesab/worldpa.svg?branch=master)](https://travis-ci.org/FRBCesab/worldpa)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/FRBCesab/worldpa?branch=master&svg=true)](https://ci.appveyor.com/project/FRBCesab/worldpa)
-<!-- [![codecov](https://codecov.io/gh/FRBCesab/worldpa/branch/master/graph/badge.svg)](https://codecov.io/gh/FRBCesab/worldpa) -->
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![License GPL-3](https://img.shields.io/badge/licence-GPLv3-8f10cb.svg)](http://www.gnu.org/licenses/gpl.html)
 [![DOI](https://zenodo.org/badge/221718108.svg)](https://zenodo.org/badge/latestdoi/221718108)
@@ -71,3 +70,4 @@ browseURL("https://frbcesab.github.io/worldpa/articles/worldpa.html")
 ```
 
 Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/](https://frbcesab.github.io/worldpa/reference/)
+
