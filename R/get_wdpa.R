@@ -6,10 +6,9 @@
 #'
 #' @return A MULTIPOLYGON Simple feature of protected areas defined in the EPSG 4326. The shapefile is also written on the hard drive (in the current directory).
 #'
-#' @importFrom httr GET
 #' @importFrom jsonlite fromJSON
 #' @importFrom geojsonsf geojson_sf
-#' @importFrom sf st_sf st_collection_extract st_cast st_write
+#' @importFrom sf st_sf st_collection_extract st_cast st_write st_geometry
 #'
 #' @export
 #'
@@ -73,7 +72,7 @@ get_wdpa <- function(isocode) {
     "?token=", wdpa_token
   )
 
-  response <- httr::GET(request)
+  response <- GET(request)
 
   if (response$status == 404) {
 
@@ -82,12 +81,12 @@ get_wdpa <- function(isocode) {
   }
 
   response <- httr::content(response, as = "text")
-  response <- jsonlite::fromJSON(response)
+  response <- fromJSON(response)
 
   pas_count <- response$country$pas_count
-  pages     <- 1:ceiling(pas_count / 50)
+  pages     <- seq_len(ceiling(pas_count / 50))
 
-  if (pas_count > 0) {
+  if (pas_count) {
 
     base_url      <- "https://api.protectedplanet.net/"
     category      <- "v3/protected_areas/search/"
@@ -107,9 +106,9 @@ get_wdpa <- function(isocode) {
         "&page=", page
       )
 
-      response <- httr::GET(request)
+      response <- GET(request)
       response <- httr::content(response, as = "text")
-      response <- jsonlite::fromJSON(response)
+      response <- fromJSON(response)
       response <- response$protected_areas
 
       pa_json  <- jsonlite::toJSON(response$geojson$geometry)
@@ -124,9 +123,9 @@ get_wdpa <- function(isocode) {
         iucn_category = response$iucn_category$name
       )
 
-      pa_sf <- sf::st_sf(attributs, geom = sf::st_geometry(pa_sf))
-      pa_sf <- sf::st_collection_extract(pa_sf, type = "POLYGON")
-      pa_sf <- sf::st_cast(pa_sf, "MULTIPOLYGON")
+      pa_sf <- st_sf(attributs, geom = st_geometry(pa_sf))
+      pa_sf <- st_collection_extract(pa_sf, type = "POLYGON")
+      pa_sf <- st_cast(pa_sf, "MULTIPOLYGON")
 
       if (page == 1) {
 
@@ -139,7 +138,9 @@ get_wdpa <- function(isocode) {
     }
 
     dir.create(paste0(isocode, "_protectedareas"), showWarnings = FALSE)
-    sf::st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile", quiet = TRUE)
+    st_write(all_pa, dsn = paste0(isocode, "_protectedareas"), 
+      layer = paste0(isocode, "_protectedareas"), driver = "ESRI Shapefile", 
+      quiet = TRUE)
 
     return(all_pa)
 

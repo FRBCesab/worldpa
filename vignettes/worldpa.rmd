@@ -20,7 +20,7 @@ vignette: >
 
 This R package is an interface to the World Database on Protected Areas (WDPA)
 hosted on the Protected planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
-It allows user to download spatial shapefiles of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
+It allows users to download spatial shapefiles of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
 
 This package contains three main functions:
@@ -69,7 +69,7 @@ This package uses the WDPA API to access data on world protected areas. You must
 first have obtained a Personal API Token by filling in the form available at:
 [https://api.protectedplanet.net/request](https://api.protectedplanet.net/request).
 Once you have obtained this token, you must store it on your computer.
-As recommended by Hadley Wickham in it [Managing secrets vignette](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html),
+As recommended by Hadley Wickham in his [Managing secrets vignette](https://cran.r-project.org/web/packages/httr/vignettes/secrets.html),
 you have to stored your API Token as an R Environment variable (a name-value pairs)
 listed in the `.Renviron` file in your home directory.
 

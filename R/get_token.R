@@ -12,8 +12,6 @@
 #'   \item Store the token in the .Renviron file under the key \code{WDPA_KEY}. User can use the function \code{usethis::edit_r_environ()}.
 #' }
 #'
-#' @importFrom httr GET
-#'
 #' @export
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
@@ -30,20 +28,22 @@ get_token <- function(key = "WDPA_KEY") {
     stop(
       paste0(
         "Missing WDPA API token. Please ensure:\n",
-        "  1) You completed this form [https://api.protectedplanet.net/request] to get the token,\n",
+        "  1) You completed this form [https://api.protectedplanet.net/request] 
+        to get the token,\n",
         "  2) You stored the value in the .Renviron with the name WDPA_KEY."
       )
     )
   }
 
-  response <- httr::GET(paste0("https://api.protectedplanet.net/test?token=", wdpa_key))
+  response <- GET(paste0("https://api.protectedplanet.net/test?token=", wdpa_key))
 
   if (response$status == 401) {
 
     stop(
       paste0(
         "Invalid WDPA API token. Please ensure:\n",
-        "  1) You completed this form [https://api.protectedplanet.net/request] to get the token,\n",
+        "  1) You completed this form [https://api.protectedplanet.net/request] 
+        to get the token,\n",
         "  2) You stored the value in the .Renviron with the name WDPA_KEY."
       )
     )

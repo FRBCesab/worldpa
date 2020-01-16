@@ -41,15 +41,15 @@ get_countries <- function(sleep = 0) {
       "&page=", page
     )
 
-    response <- httr::GET(request)
+    response <- GET(request)
 
     if (response$status == 200) {
 
       response <- httr::content(response, as = "text")
-      response <- jsonlite::fromJSON(response)
+      response <- fromJSON(response)
       response <- response$countries
 
-      if (length(response) > 0) {
+      if (length(response)) {
 
         response <- data.frame(
           region_name  = response$region$name,
@@ -79,7 +79,8 @@ get_countries <- function(sleep = 0) {
     Sys.sleep(sleep)
   }
 
-  wdpa_countries <- wdpa_countries[with(wdpa_countries, order(region_name, country_name)), ]
+  wdpa_countries <- wdpa_countries[with(wdpa_countries, order(region_name, 
+    country_name)), ]
   rownames(wdpa_countries) <- NULL
 
   return(wdpa_countries)
