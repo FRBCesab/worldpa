@@ -12,7 +12,7 @@ Overview
 --------
 
 This R package is an interface to the World Database on Protected Areas (WDPA)
-hosted on the Protected planet website ([https://www.protectedplanet.net](https://www.protectedplanet.net)). This package is freely release by the [FRB-CESAB](https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/) and allows user to download spatial shapefiles (`simple features`) of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
+hosted on the Protected planet website ([https://www.protectedplanet.net](https://www.protectedplanet.net)). This package is freely released by the [FRB-CESAB](https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/) and allows user to download spatial shapefiles (`simple features`) of protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
 
 
@@ -38,7 +38,7 @@ Then follow these instructions to store this token: [Managing WDPA API Token](ht
 Installation
 --------
 
-First install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
+First, install the package [`devtools`](http://cran.r-project.org/web/packages/devtools/index.html) from the CRAN (if not already installed).
 
 ```r
 install.packages("devtools", dependencies = TRUE)
@@ -50,7 +50,7 @@ Then install the `worldpa` package from GitHub.
 devtools::install_github("frbcesab/worldpa", build_vignettes = TRUE)
 ```
 
-**Note:** Build the vignette only if you already have stored the token.
+:warning: **Note:** Build the vignette only if you already have stored the token.
 
 
 Getting started
@@ -68,5 +68,5 @@ And browse the vignette to get started.
 browseURL("https://frbcesab.github.io/worldpa/articles/worldpa.html")
 ```
 
-Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/](https://frbcesab.github.io/worldpa/reference/)
+Functions documentation can be found at: [https://frbcesab.github.io/worldpa/reference/](https://frbcesab.github.io/worldpa/reference/).
 
