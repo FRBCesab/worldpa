@@ -19,8 +19,6 @@
 #' @seealso `wdpa_countries`, `get_wdpa`
 #'
 #' @export
-#' @importFrom httr content GET
-#' @importFrom jsonlite fromJSON
 #'
 #' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #'

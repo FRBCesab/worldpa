@@ -7,25 +7,29 @@
 get_wdpa(isocode)
 }
 \arguments{
-\item{isocode}{The ISO-3 code of the country.}
+\item{isocode}{a character specifying the ISO-3 code of the country.}
 }
 \value{
-A MULTIPOLYGON Simple feature of protected areas defined in the EPSG 4326. The shapefile is also written on the hard drive (in the current directory).
+A `MULTIPOLYGON` Simple feature of protected areas defined in the
+  EPSG 4326. The shapefile is also written on the hard drive
+  (in the current directory).
 }
 \description{
 This function downloads protected areas for one country using the WDPA API.
 }
 \examples{
-## Get Protected Areas for Georgia
+\dontrun{
+## Get the ISO-3 code of Georgia ----
+data("wdpa_countries", package = "worldpa")
+wdpa_countries[grep("Geor", wdpa_countries$"country_name"), 3:4]
 
-## data(wdpa_countries)
+##                                     country_name country_iso3
+## 133                                      Georgia          GEO
+## 235 South Georgia and the South Sandwich Islands          SGS
 
-## wdpa_countries[grep("Geor", wdpa_countries[ , "country_name"]), ]
-##     region_name region_iso2                                 country_name country_iso3 pas_count
-## 133      Europe          EU                                      Georgia          GEO        89
-## 235       Polar          PO South Georgia and the South Sandwich Islands          SGS         1
+## Download Protected Areas for Georgia ----
+worldpa::get_wdpa(isocode = "GEO")
 
-## get_wdpa(isocode = "GEO")
 ## Simple feature collection with 89 features and 6 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -44,6 +48,7 @@ This function downloads protected areas for one country using the WDPA API.
 ## 8     1665       Mariamjvari          GEO     FALSE Strict Nature Reserve            Ia
 ## 9     1666          Kolkheti          GEO      TRUE         National Park            II
 ## 10    1667          Sataplia          GEO     FALSE Strict Nature Reserve            Ia
+}
 }
 \author{
 Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
