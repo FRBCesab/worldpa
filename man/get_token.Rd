@@ -25,7 +25,8 @@ Before using this package for the first time, the user must follow
         \url{https://api.protectedplanet.net/request} to obtain a personal
         API token;
   \item Store the token in the `.Renviron` file under the key `WDPA_KEY`.
-        User can use the function \link{\code{usethis::edit_r_environ}}.
+        User can use the function \link{\code{usethis::edit_r_environ}} to
+        to open this file.
 }
 }
 \examples{

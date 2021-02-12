@@ -45,10 +45,6 @@ get_countries <- function(sleep = 0, key = "WDPA_KEY") {
 
   wdpa_token <- get_token(key)
 
-  base_url   <- "https://api.protectedplanet.net/"
-  category   <- "v3/countries"
-  per_page   <- 50
-
   wdpa_countries  <- data.frame()
 
   page    <- 1
@@ -56,46 +52,35 @@ get_countries <- function(sleep = 0, key = "WDPA_KEY") {
 
   while (content) {
 
-    request <- paste0(
-      base_url,
-      category,
-      "?token=", wdpa_token,
-      "&per_page=", per_page,
-      "&page=", page
-    )
+    request <- wdpa_fullurl("v3/countries", "?token=", wdpa_token,
+                            "&per_page=50", "&page=", page)
 
     response <- httr::GET(request)
 
-    if (response$status == 200) {
+    httr::stop_for_status(response)
 
-      response <- httr::content(response, as = "text")
-      response <- jsonlite::fromJSON(response)
-      response <- response$"countries"
+    response <- httr::content(response, as = "text")
+    response <- jsonlite::fromJSON(response)
+    response <- response$"countries"
 
-      if (length(response)) {
+    if (length(response)) {
 
-        response <- data.frame(
-          region_name  = response$"region"$"name",
-          region_iso2  = response$"region"$"iso",
-          country_name = response$"name",
-          country_iso3 = response$"iso_3",
-          pas_count    = response$"pas_count",
-          stringsAsFactors = FALSE
-        )
+      response <- data.frame(
+        region_name  = response$"region"$"name",
+        region_iso2  = response$"region"$"iso",
+        country_name = response$"name",
+        country_iso3 = response$"iso_3",
+        pas_count    = response$"pas_count",
+        stringsAsFactors = FALSE
+      )
 
-        wdpa_countries <- rbind(wdpa_countries, response)
+      wdpa_countries <- rbind(wdpa_countries, response)
 
-        page <- page + 1
-
-      } else {
-
-        content <- FALSE
-
-      }
+      page <- page + 1
 
     } else {
 
-      stop("Bad request.")
+      content <- FALSE
 
     }
 

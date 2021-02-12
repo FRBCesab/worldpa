@@ -15,7 +15,8 @@
 #'         \url{https://api.protectedplanet.net/request} to obtain a personal
 #'         API token;
 #'   \item Store the token in the `.Renviron` file under the key `WDPA_KEY`.
-#'         User can use the function \link{\code{usethis::edit_r_environ}}.
+#'         User can use the function \link{\code{usethis::edit_r_environ}} to
+#'         to open this file.
 #' }
 #'
 #' @export
@@ -32,38 +33,31 @@
 
 get_token <- function(key = "WDPA_KEY") {
 
-  wdpa_key <- Sys.getenv(key)
+  wdpa_token <- Sys.getenv(key)
 
-  if (wdpa_key == "") {
+  if (wdpa_token == "") {
     stop("Missing WDPA API Token.\n",
-         "Please ensure:\n",
-         " 1. to complete this form ",
+         "Please make sure you:\n",
+         " 1. have completed this form ",
          "<https://api.protectedplanet.net/request> ",
          "to get your own token, and\n",
-         " 2. to store the value in the `.Renviron` file with the name ",
+         " 2. have stored the value in the `.Renviron` file with the name ",
          "WDPA_KEY.")
   }
 
-  response <- httr::GET(paste0("https://api.protectedplanet.net/test?token=",
-                               wdpa_key))
+  response <- httr::GET(wdpa_fullurl("test?token=", wdpa_token))
 
   if (response$"status" == 401) {
     stop("Invalid WDPA API Token.\n",
-         "Please ensure:\n",
-         " 1. to complete this form ",
+         "Please make sure you:\n",
+         " 1. have completed this form ",
          "<https://api.protectedplanet.net/request> ",
          "to get your own token, and\n",
-         " 2. to store the value in the `.Renviron` file with the name ",
+         " 2. have stored the value in the `.Renviron` file with the name ",
          "WDPA_KEY.")
   }
 
-  if (response$"status" == 500) {
-    stop("Internal Server Error.")
-  }
+  httr::stop_for_status(response)
 
-  if (response$"status" != 200) {
-    stop("Something go wrong with your API token.")
-  }
-
-  return(wdpa_key)
+  return(wdpa_token)
 }

@@ -52,6 +52,8 @@
 get_wdpa <- function(isocode, key = "WDPA_KEY") {
 
 
+  ## Checks inputs ----
+
   if (missing(isocode)) {
     stop("Please provide one country ISO-3 code.\n",
          "Type `data(wdpa_countries)` or `wdpa_countries` to search for ",
@@ -62,19 +64,21 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
     stop("This function only works with one ISO-3 code.")
   }
 
-  base_url   <- "https://api.protectedplanet.net/"
-  category   <- "v3/countries/"
   wdpa_token <- get_token(key)
 
-  request <- paste0(base_url, category, isocode, "?token=", wdpa_token)
 
-  response <- httr::GET(request)
+  ## Is ISO-3 code valid?
+
+  response <- httr::GET(wdpa_fullurl("v3/countries/?token=", wdpa_token))
 
   if (response$status == 404) {
     stop("Invalid ISO-3 code.\n",
          "Type `data(wdpa_countries)` or `wdpa_countries` to search for ",
          "ISO-3 codes.")
   }
+
+
+  ## Get Total Number of Pages ----
 
   response <- httr::content(response, as = "text")
   response <- jsonlite::fromJSON(response)
@@ -84,23 +88,11 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
 
   if (pas_count) {
 
-    base_url      <- "https://api.protectedplanet.net/"
-    category      <- "v3/protected_areas/search/"
-    wdpa_token    <- Sys.getenv("WDPA_KEY")
-    with_geometry <- "true"
-
-
     for (page in pages) {
 
-      request <- paste0(
-        base_url,
-        category,
-        "?token=", wdpa_token,
-        "&with_geometry=", "true",
-        "&country=", isocode,
-        "&per_page=", 50,
-        "&page=", page
-      )
+      request <- wdpa_fullurl("v3/protected_areas/search/?token=", wdpa_token,
+                              "&with_geometry=true", "&country=", isocode,
+                              "&per_page=50", "&page=", page)
 
       response <- httr::GET(request)
       response <- httr::content(response, as = "text")
