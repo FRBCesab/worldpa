@@ -7,8 +7,8 @@
 get_token(key = "WDPA_KEY")
 }
 \arguments{
-\item{key}{a character providing the token value stored in the `.Renviron`
-file (recommended key name: `WDPA_KEY`).}
+\item{key}{a character providing the WDPA token value stored in the
+`.Renviron` file (recommended key name: `WDPA_KEY`).}
 }
 \value{
 A vector of length one with the value of the API token.
