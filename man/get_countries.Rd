@@ -4,11 +4,14 @@
 \alias{get_countries}
 \title{Get World Countries Listed by the UNEP-WCMC}
 \usage{
-get_countries(sleep = 0)
+get_countries(sleep = 0, key = "WDPA_KEY")
 }
 \arguments{
 \item{sleep}{a numeric specifying the time interval (in seconds) to suspend
 between each API request.}
+
+\item{key}{a character providing the WDPA token value stored in the
+`.Renviron` file (recommended key name: `WDPA_KEY`).}
 }
 \value{
 A data frame with the following informations (columns) for each

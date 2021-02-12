@@ -4,10 +4,13 @@
 \alias{get_wdpa}
 \title{Download Protected Areas by Country}
 \usage{
-get_wdpa(isocode)
+get_wdpa(isocode, key = "WDPA_KEY")
 }
 \arguments{
 \item{isocode}{a character specifying the ISO-3 code of the country.}
+
+\item{key}{a character providing the WDPA token value stored in the
+`.Renviron` file (recommended key name: `WDPA_KEY`).}
 }
 \value{
 A `MULTIPOLYGON` Simple feature of protected areas defined in the

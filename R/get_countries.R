@@ -5,6 +5,8 @@
 #'
 #' @param sleep a numeric specifying the time interval (in seconds) to suspend
 #'   between each API request.
+#' @param key a character providing the WDPA token value stored in the
+#'   `.Renviron` file (recommended key name: `WDPA_KEY`).
 #'
 #' @return A data frame with the following informations (columns) for each
 #' World countries (rows):
@@ -39,9 +41,9 @@
 
 
 
-get_countries <- function(sleep = 0) {
+get_countries <- function(sleep = 0, key = "WDPA_KEY") {
 
-  wdpa_token <- get_token()
+  wdpa_token <- get_token(key)
 
   base_url   <- "https://api.protectedplanet.net/"
   category   <- "v3/countries"

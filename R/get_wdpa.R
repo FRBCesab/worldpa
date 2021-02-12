@@ -3,6 +3,8 @@
 #' This function downloads protected areas for one country using the WDPA API.
 #'
 #' @param isocode a character specifying the ISO-3 code of the country.
+#' @param key a character providing the WDPA token value stored in the
+#'   `.Renviron` file (recommended key name: `WDPA_KEY`).
 #'
 #' @return A `MULTIPOLYGON` Simple feature of protected areas defined in the
 #'   EPSG 4326. The shapefile is also written on the hard drive
@@ -47,7 +49,7 @@
 
 
 
-get_wdpa <- function(isocode) {
+get_wdpa <- function(isocode, key = "WDPA_KEY") {
 
 
   if (missing(isocode)) {
@@ -62,7 +64,7 @@ get_wdpa <- function(isocode) {
 
   base_url   <- "https://api.protectedplanet.net/"
   category   <- "v3/countries/"
-  wdpa_token <- get_token()
+  wdpa_token <- get_token(key)
 
   request <- paste0(base_url, category, isocode, "?token=", wdpa_token)
 
