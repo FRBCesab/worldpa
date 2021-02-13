@@ -7,26 +7,27 @@
 get_token(key = "WDPA_KEY")
 }
 \arguments{
-\item{key}{a character providing the WDPA token value stored in the
-`.Renviron` file (recommended key name: `WDPA_KEY`).}
+\item{key}{a character providing the WDPA token name stored in the
+\code{.Renviron} file. Default is \code{WDPA_KEY}.}
 }
 \value{
 A vector of length one with the value of the API token.
 }
 \description{
 This function checks if the user has stored a valid Protected Planet API
-  token in the R environment file (`.Renviron`) under the key `WDPA_KEY`.
+token in the R environment file (\code{.Renviron}).
 }
 \details{
 Before using this package for the first time, the user must follow
-  these steps:
+these steps:
 \itemize{
-  \item Fill in the form available at:
-        \url{https://api.protectedplanet.net/request} to obtain a personal
-        API token;
-  \item Store the token in the `.Renviron` file under the key `WDPA_KEY`.
-        User can use the function \link{\code{usethis::edit_r_environ}} to
-        to open this file.
+\item Fill in the form available at:
+\url{https://api.protectedplanet.net/request} to obtain a personal
+API token;
+\item Store the token in the \code{.Renviron} file under the key \code{WDPA_KEY}.
+User can use the function \code{usethis::edit_r_environ} to open this
+file;
+\item Restart R.
 }
 }
 \examples{
@@ -34,7 +35,4 @@ Before using this package for the first time, the user must follow
 ## Check if Protected Planet API token is stored ----
 worldpa::get_token()
 }
-}
-\author{
-Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
 }

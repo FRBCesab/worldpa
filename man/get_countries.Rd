@@ -10,23 +10,23 @@ get_countries(sleep = 0, key = "WDPA_KEY")
 \item{sleep}{a numeric specifying the time interval (in seconds) to suspend
 between each API request.}
 
-\item{key}{a character providing the WDPA token value stored in the
-`.Renviron` file (recommended key name: `WDPA_KEY`).}
+\item{key}{a character providing the WDPA token name stored in the
+\code{.Renviron} file. Default is \code{WDPA_KEY}.}
 }
 \value{
-A data frame with the following informations (columns) for each
+A data frame with the following information (columns) for each
 World countries (rows):
 \describe{
-  \item{region_name}{the name of the region}
-  \item{region_iso2}{the ISO-2 code of the region}
-  \item{country_name}{the name of the country}
-  \item{country_iso3}{the ISO-3 code of the country}
-  \item{pas_count}{the number of protected areas per country}
+\item{region_name}{the name of the region}
+\item{region_iso2}{the ISO-2 code of the region}
+\item{country_name}{the name of the country}
+\item{country_iso3}{the ISO-3 code of the country}
+\item{pas_count}{the number of protected areas per country}
 }
 }
 \description{
 This function gets the list of world countries listed by the UNEP-WCMC using
-  the Protected Planet API \url{https://api.protectedplanet.net/}.
+the Protected Planet API \url{https://api.protectedplanet.net/}.
 }
 \examples{
 \dontrun{
@@ -44,8 +44,5 @@ head(countries)
 }
 }
 \seealso{
-`wdpa_countries`, `get_wdpa`
-}
-\author{
-Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
+\code{wdpa_countries}, \code{get_wdpa}
 }

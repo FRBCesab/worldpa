@@ -1,6 +1,6 @@
-#' World Countries Distributed in the UNEP-WCMC Regions
+#' World Countries Listed in the UNEP-WCMC Regions
 #'
-#' This dataset contains informations about countries listed on the Protected
+#' This dataset contains information about countries listed in the Protected
 #'   Planet project (\url{https://www.protectedplanet.net}). This dataset has
 #'   been built using the Protected Planet API the 2021/02/12. For a more
 #'   up-to-date version, please use the function `get_countries`.

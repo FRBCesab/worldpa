@@ -9,13 +9,13 @@ get_wdpa(isocode, key = "WDPA_KEY")
 \arguments{
 \item{isocode}{a character specifying the ISO-3 code of the country.}
 
-\item{key}{a character providing the WDPA token value stored in the
-`.Renviron` file (recommended key name: `WDPA_KEY`).}
+\item{key}{a character providing the WDPA token name stored in the
+\code{.Renviron} file. Default is \code{WDPA_KEY}.}
 }
 \value{
-A `MULTIPOLYGON` Simple feature of protected areas defined in the
-  EPSG 4326. The shapefile is also written on the hard drive
-  (in the current directory).
+A \code{MULTIPOLYGON} Simple Feature of protected areas defined in the
+EPSG 4326. Files (ESRI format) are also written on the hard drive
+(in the current directory).
 }
 \description{
 This function downloads protected areas for one country using the WDPA API.
@@ -53,6 +53,6 @@ worldpa::get_wdpa(isocode = "GEO")
 ## 10    1667          Sataplia          GEO     FALSE Strict Nature Reserve            Ia
 }
 }
-\author{
-Nicolas CASAJUS, \email{nicolas.casajus@fondationbiodiversite.fr}
+\seealso{
+\code{wdpa_countries}, \code{get_countries}
 }

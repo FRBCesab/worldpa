@@ -3,16 +3,15 @@
 #' This function downloads protected areas for one country using the WDPA API.
 #'
 #' @param isocode a character specifying the ISO-3 code of the country.
-#' @param key a character providing the WDPA token value stored in the
-#'   `.Renviron` file (recommended key name: `WDPA_KEY`).
+#' @inheritParams get_token
 #'
-#' @return A `MULTIPOLYGON` Simple feature of protected areas defined in the
-#'   EPSG 4326. The shapefile is also written on the hard drive
+#' @return A `MULTIPOLYGON` Simple Feature of protected areas defined in the
+#'   EPSG 4326. Files (ESRI format) are also written on the hard drive
 #'   (in the current directory).
 #'
-#' @export
+#' @seealso `wdpa_countries`, `get_countries`
 #'
-#' @author Nicolas CASAJUS, \email{nicolas.casajus@@fondationbiodiversite.fr}
+#' @export
 #'
 #' @examples
 #' \dontrun{
