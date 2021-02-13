@@ -1,3 +1,37 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+worldpa.Rproj
+.Rproj.user/
+
+# Produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# R Environment Variables
+.Renviron
+
+# macOS Files
 .DS_Store
-docs/*
+
+# Others
+docs/
+README.html
 GEO_protectedareas/

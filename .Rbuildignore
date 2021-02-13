@@ -1,4 +1,7 @@
 ^.travis.yml$
 ^appveyor\.yml$
 ^hexsticker.png$
-^GEO_protectedareas
+^GEO_protectedareas$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.github$
