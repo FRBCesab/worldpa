@@ -1,28 +1,42 @@
 Package: worldpa
 Type: Package
-Title: API-based R package to download World protected areas shapefile
-Version: 1.0.0.0
-Date: 2020-01-16
-Author: Nicolas Casajus [cre, aut]
-Maintainer: Nicolas Casajus <nicolas.casajus@fondationbiodiversite.fr>
-Description: API-based R package to download World protected areas shapefiles from the Protected Planet website (https://www.protectedplanet.net).
+Title: An Interface to the World Database on Protected Areas (WDPA)
+Version: 2.0.0
+Date: 2021-02-13
+Authors@R: c(
+    person(given   = "Nicolas",
+           family  = "Casajus",
+           email   = "nicolas.casajus@fondationbiodiversite.fr",
+           role    = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5537-5294")),
+    person(given   = "Kevin",
+           family  = "Cazelles",
+           email   = "kevin.cazelles@gmail.com",
+           role    = c("ctb", "rev"),
+           comment = c(ORCID = "0000-0001-6619-9874")))
+Description: This package is an interface to the World Database on Protected
+    Areas <https://www.protectedplanet.net> and its API
+    <https://api.protectedplanet.net>. User can download terrestrial and marine
+    protected areas for the world countries (one country at the time).
 URL: https://github.com/frbcesab/worldpa
 BugReports: https://github.com/frbcesab/worldpa/issues
-Depends: R (>= 3.6.0)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
+NeedsCompilation: no
+Depends:
+    R (>= 3.3.0)
 Imports:
+    geojsonsf,
     httr,
     jsonlite,
-    sf,
-    geojsonsf
+    sf
 Suggests:
     knitr,
-    rmarkdown,
-    testthat (>= 2.1.0),
+    maps,
     pkgdown,
-    maps
+    rmarkdown,
+    testthat (>= 2.1.0)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-NeedsCompilation: no
-RoxygenNote: 7.0.2
