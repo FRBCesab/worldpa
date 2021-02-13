@@ -142,8 +142,35 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>MULTIPOLYGON</code> Simple Feature of protected areas defined in the
-EPSG 4326. Files (ESRI format) are also written on the hard drive
-(in the current directory).</p>
+EPSG 4326 with the following 19 attributes:</p><dl>
+<dt>wdpa_id</dt><dd><p>the ID of the protected area on the WDPA database</p></dd>
+<dt>pa_name</dt><dd><p>the name of the protected area on the WDPA database</p></dd>
+<dt>original_name</dt><dd><p>the original name of the protected area</p></dd>
+<dt>country_iso3</dt><dd><p>the ISO-3 code of the country</p></dd>
+<dt>country</dt><dd><p>the name of the country</p></dd>
+<dt>owner_type</dt><dd><p>the owner of the protected area</p></dd>
+<dt>is_marine</dt><dd><p>a boolean: <code>TRUE</code> for marine and <code>FALSE</code> for terrestrial
+protected area</p></dd>
+<dt>designation</dt><dd><p>the designation of the protected area</p></dd>
+<dt>iucn_category</dt><dd><p>the IUCN category</p></dd>
+<dt>no_take_status</dt><dd><p>the no take status</p></dd>
+<dt>reported_area</dt><dd><p>the (reported) area of the protected area</p></dd>
+<dt>reported_marine_area</dt><dd><p>the (reported) area of the marine part of the
+protected area</p></dd>
+<dt>no_take_area</dt><dd><p>the (reported) area of the no take part of the
+protected area</p></dd>
+<dt>legal_status</dt><dd><p>the legal status of the protected area</p></dd>
+<dt>management_authority</dt><dd><p>the management authority</p></dd>
+<dt>governance</dt><dd><p>the type of gouvernance</p></dd>
+<dt>management_plan</dt><dd><p>the URL of the management plan</p></dd>
+<dt>protected_planet</dt><dd><p>the URL of the protected area page on the Protected
+Planet website</p></dd>
+<dt>legal_status_updated</dt><dd><p>the date of the last update of the legal status</p></dd>
+
+</dl>
+
+<p>Spatial shapefiles (ESRI format) are also written on the hard drive in a new
+folder <strong>XXX_protectedareas/</strong> (where <code>XXX</code> is the ISO-3 code of the country).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>wdpa_countries</code>, <code>get_countries</code></p></div>
@@ -152,7 +179,7 @@ EPSG 4326. Files (ESRI format) are also written on the hard drive
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Get the ISO-3 code of Georgia ----</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wdpa_countries"</span>, package <span class='op'>=</span> <span class='st'>"worldpa"</span><span class='op'>)</span>
-<span class='va'>wdpa_countries</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span><span class='op'>(</span><span class='st'>"Geor"</span>, <span class='va'>wdpa_countries</span><span class='op'>$</span><span class='st'>"country_name"</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='va'>wdpa_countries</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span><span class='op'>(</span><span class='st'>"^Georgia"</span>, <span class='va'>wdpa_countries</span><span class='op'>$</span><span class='st'>"country_name"</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
 
 <span class='co'>##                                     country_name country_iso3</span>
 <span class='co'>## 133                                      Georgia          GEO</span>
@@ -160,25 +187,6 @@ EPSG 4326. Files (ESRI format) are also written on the hard drive
 
 <span class='co'>## Download Protected Areas for Georgia ----</span>
 <span class='fu'>worldpa</span><span class='fu'>::</span><span class='fu'>get_wdpa</span><span class='op'>(</span>isocode <span class='op'>=</span> <span class='st'>"GEO"</span><span class='op'>)</span>
-
-<span class='co'>## Simple feature collection with 89 features and 6 fields</span>
-<span class='co'>## geometry type:  MULTIPOLYGON</span>
-<span class='co'>## dimension:      XY</span>
-<span class='co'>## bbox:           xmin: 40.31 ymin: 41.093 xmax: 46.736 ymax: 43.544</span>
-<span class='co'>## epsg (SRID):    4326</span>
-<span class='co'>## proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
-<span class='co'>## First 10 features:</span>
-<span class='co'>##    wdpa_id           pa_name country_iso3 is_marine           designation iucn_category</span>
-<span class='co'>## 1     1652           Borjomi          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 2     1653         Lagodekhi          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 3     1654             Ritsa          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 4     1656         Kintrishi          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 5     1657           Liakhvi          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 6     1660        Vashlovani          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 7     1664 Bichvinta-Miusera          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 8     1665       Mariamjvari          GEO     FALSE Strict Nature Reserve            Ia</span>
-<span class='co'>## 9     1666          Kolkheti          GEO      TRUE         National Park            II</span>
-<span class='co'>## 10    1667          Sataplia          GEO     FALSE Strict Nature Reserve            Ia</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
