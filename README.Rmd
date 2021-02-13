@@ -28,8 +28,8 @@ worldpa <img src="man/figures/hexsticker.png" height="120" align="right"/>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/FRBCesab/worldpa/workflows/R-CMD-check/badge.svg)](https://github.com/FRBCesab/worldpa/actions)
-[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN status](https://www.r-pkg.org/badges/version/worldpa)](https://CRAN.R-project.org/package=worldpa)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![License GPL-3](https://img.shields.io/badge/licence-GPLv3-8f10cb.svg)](http://www.gnu.org/licenses/gpl.html)
 [![DOI](https://zenodo.org/badge/221718108.svg)](https://zenodo.org/badge/latestdoi/221718108)
 <!-- badges: end -->

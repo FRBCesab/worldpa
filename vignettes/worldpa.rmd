@@ -27,9 +27,9 @@ It allows users to download spatial shapefiles of terrestrial and marine protect
 
 This package contains three main functions:
 
-- `get_token`: this function checks if your WDPA personal access token (PAT) is correctly stored;
-- `get_countries`: this function gets world countries information (ISO-3 code);
-- `get_wdpa`: this function downloads world protected areas shapefiles for one specified country.
+- `get_token()`: this function checks if your WDPA personal access token (PAT) is correctly stored;
+- `get_countries()`: this function gets world countries information (ISO-3 code);
+- `get_wdpa()`: this function downloads world protected areas shapefiles for one specified country.
 
 <br />
 
@@ -60,7 +60,7 @@ As recommended by Hadley Wickham in his
 you can store your API PAT as an R Environment variable (a name-value pairs)
 listed in the `.Renviron` file in your home directory.
 
-Use the function `usethis::edit_r_environ` to open this file and add this line 
+Use the function `usethis::edit_r_environ()` to open this file and add this line 
 (by replacing `z999zzz...` with your Personal WDPA API Token):
 
 ```
@@ -70,11 +70,11 @@ WDPA_KEY='z999zzz9zzz999999z9z99zz999zz999'
 Save the file and relaunch R.
 
 Now, let's check if your Personal WDPA API Token is correctly stored in your 
-`.Renviron` file by using the function `get_token`:
+`.Renviron` file by using the function `get_token()`:
 
 ```{r echo=TRUE, eval=FALSE}
 ## Check if User's Token is correctly stored ----
-wdpa::get_token()
+worldpa::get_token()
 
 ## [1] "z999zzz9zzz999999z9z99zz999zz999"
 ```
@@ -112,12 +112,12 @@ data("wdpa_countries", package = "worldpa")
 <br />
 
 As the WDPA is updated every month, you can get an updated version of this 
-dataset by using the function `get_countries`:
+dataset by using the function `get_countries()`:
 
 
 ```{r echo=TRUE, eval=FALSE}
 ## Get UNEP-WCMC World Countries Information ----
-wdpa::get_countries()
+worldpa::get_countries()
 ```
 
 
@@ -130,7 +130,7 @@ wdpa::get_countries()
 
 
 
-Now, let's use the function `get_wdpa` to download protected areas shapefiles 
+Now, let's use the function `get_wdpa()` to download protected areas shapefiles 
 for Georgia.
 
 
@@ -143,12 +143,13 @@ wdpa_countries[grep("Georgia", wdpa_countries$"country_name"), 3:4]
 ## 235 South Georgia and the South Sandwich Islands          SGS
 
 # Download Georgia PA ----
-pa_sf <- get_wdpa(isocode = "GEO")
+pa_sf <- worldpa::get_wdpa(isocode = "GEO")
 ```
 
-The returned object is a simple feature **sf object** of `MULTIPOLYGONS` as 
-defined in the package `{sf}`. The function `get_wdpa` has also exported the 
-protected areas as an ESRI Shapefile in the working directory.
+The returned object is a **sf object** of `MULTIPOLYGONS` as 
+defined in the package `{sf}`. The function `get_wdpa()` has also exported the 
+protected areas as an ESRI Shapefile in a new folder: **XXX_protectedareas/** 
+(where `XXX` is the ISO-3 code of the country).
 
 <br />
 
