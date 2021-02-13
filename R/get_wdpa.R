@@ -6,8 +6,35 @@
 #' @inheritParams get_token
 #'
 #' @return A `MULTIPOLYGON` Simple Feature of protected areas defined in the
-#'   EPSG 4326. Files (ESRI format) are also written on the hard drive
-#'   (in the current directory).
+#'   EPSG 4326 with the following 19 attributes: 
+#' \describe{
+#'   \item{wdpa_id}{the ID of the protected area on the WDPA database}
+#'   \item{pa_name}{the name of the protected area on the WDPA database}
+#'   \item{original_name}{the original name of the protected area}
+#'   \item{country_iso3}{the ISO-3 code of the country}
+#'   \item{country}{the name of the country}
+#'   \item{owner_type}{the owner of the protected area}
+#'   \item{is_marine}{a boolean: `TRUE` for marine and `FALSE` for terrestrial
+#'   protected area}
+#'   \item{designation}{the designation of the protected area}
+#'   \item{iucn_category}{the IUCN category}
+#'   \item{no_take_status}{the no take status}
+#'   \item{reported_area}{the (reported) area of the protected area}
+#'   \item{reported_marine_area}{the (reported) area of the marine part of the 
+#'   protected area}
+#'   \item{no_take_area}{the (reported) area of the no take part of the 
+#'   protected area}
+#'   \item{legal_status}{the legal status of the protected area}
+#'   \item{management_authority}{the management authority}
+#'   \item{governance}{the type of gouvernance}
+#'   \item{management_plan}{the URL of the management plan}
+#'   \item{protected_planet}{the URL of the protected area page on the Protected
+#'   Planet website}
+#'   \item{legal_status_updated}{the date of the last update of the legal status}
+#' }
+#'   
+#' Spatial shapefiles (ESRI format) are also written on the hard drive in a new 
+#' folder **XXX_protectedareas/** (where `XXX` is the ISO-3 code of the country).
 #'
 #' @seealso `wdpa_countries`, `get_countries`
 #'
@@ -17,7 +44,7 @@
 #' \dontrun{
 #' ## Get the ISO-3 code of Georgia ----
 #' data("wdpa_countries", package = "worldpa")
-#' wdpa_countries[grep("Geor", wdpa_countries$"country_name"), 3:4]
+#' wdpa_countries[grep("^Georgia", wdpa_countries$"country_name"), 3:4]
 #'
 #' ##                                     country_name country_iso3
 #' ## 133                                      Georgia          GEO
@@ -25,25 +52,6 @@
 #'
 #' ## Download Protected Areas for Georgia ----
 #' worldpa::get_wdpa(isocode = "GEO")
-#'
-#' ## Simple feature collection with 89 features and 6 fields
-#' ## geometry type:  MULTIPOLYGON
-#' ## dimension:      XY
-#' ## bbox:           xmin: 40.31 ymin: 41.093 xmax: 46.736 ymax: 43.544
-#' ## epsg (SRID):    4326
-#' ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#' ## First 10 features:
-#' ##    wdpa_id           pa_name country_iso3 is_marine           designation iucn_category
-#' ## 1     1652           Borjomi          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 2     1653         Lagodekhi          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 3     1654             Ritsa          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 4     1656         Kintrishi          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 5     1657           Liakhvi          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 6     1660        Vashlovani          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 7     1664 Bichvinta-Miusera          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 8     1665       Mariamjvari          GEO     FALSE Strict Nature Reserve            Ia
-#' ## 9     1666          Kolkheti          GEO      TRUE         National Park            II
-#' ## 10    1667          Sataplia          GEO     FALSE Strict Nature Reserve            Ia
 #' }
 
 
@@ -66,15 +74,18 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
   wdpa_token <- get_token(key)
 
 
-  ## Is ISO-3 code valid?
+  ## Is ISO-3 code valid? ----
 
-  response <- httr::GET(wdpa_fullurl("v3/countries/?token=", wdpa_token))
+  response <- httr::GET(wdpa_fullurl("v3/countries/", isocode, 
+                                     "?token=", wdpa_token))
 
-  if (response$status == 404) {
+  if (response$"status" == 404) {
     stop("Invalid ISO-3 code.\n",
          "Type `data(wdpa_countries)` or `wdpa_countries` to search for ",
          "ISO-3 codes.")
   }
+  
+  httr::stop_for_status(response)
 
 
   ## Get Total Number of Pages ----
@@ -96,18 +107,33 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
       response <- httr::GET(request)
       response <- httr::content(response, as = "text")
       response <- jsonlite::fromJSON(response)
-      response <- response$"countries"
+      response <- response$"protected_areas"
 
       pa_json  <- jsonlite::toJSON(response$"geojson"$"geometry")
       pa_sf    <- geojsonsf::geojson_sf(pa_json)
 
       attributs <- data.frame(
-        wdpa_id       = response$"id",
-        pa_name       = response$"name",
-        country_iso3  = isocode,
-        is_marine     = response$"marine",
-        designation   = response$"designation"$"name",
-        iucn_category = response$"iucn_category"$"name"
+        wdpa_id              = response$"id",
+        pa_name              = response$"name",
+        original_name        = response$"original_name",
+        country_iso3         = isocode,
+        country              = unlist(lapply(response$"countries", 
+                                             function(x) paste0(x[["name"]], 
+                                                                collapse = "; "))),
+        owner_type           = response$"owner_type",
+        is_marine            = response$"marine",
+        designation          = response$"designation"$"name",
+        iucn_category        = response$"iucn_category"$"name",
+        no_take_status       = response$"no_take_status"$"name",
+        reported_area        = as.numeric(response$"reported_area"),
+        reported_marine_area = as.numeric(response$"reported_marine_area"),
+        no_take_area         = as.numeric(response$"no_take_status"$"area"),
+        legal_status         = response$"legal_status"$"name",
+        management_authority = response$"management_authority"$"name",
+        governance           = response$"governance"$"governance_type",
+        management_plan      = response$"management_plan",
+        protected_planet     = response$"links"$"protected_planet",
+        legal_status_updated = response$"legal_status_updated_at"
       )
 
       pa_sf <- sf::st_sf(attributs, geom = sf::st_geometry(pa_sf))
