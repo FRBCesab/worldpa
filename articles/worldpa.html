@@ -93,11 +93,11 @@
 <p>This package contains three main functions:</p>
 <ul>
 <li>
-<code>get_token</code>: this function checks if your WDPA personal access token (PAT) is correctly stored;</li>
+<code><a href="../reference/get_token.html">get_token()</a></code>: this function checks if your WDPA personal access token (PAT) is correctly stored;</li>
 <li>
-<code>get_countries</code>: this function gets world countries information (ISO-3 code);</li>
+<code><a href="../reference/get_countries.html">get_countries()</a></code>: this function gets world countries information (ISO-3 code);</li>
 <li>
-<code>get_wdpa</code>: this function downloads world protected areas shapefiles for one specified country.</li>
+<code><a href="../reference/get_wdpa.html">get_wdpa()</a></code>: this function downloads world protected areas shapefiles for one specified country.</li>
 </ul>
 <p><br></p>
 <p>This package is not yet hosted on the CRAN but you can install it from <a href="https://www.github.com">GitHub</a>:</p>
@@ -111,13 +111,13 @@
 <a href="#managing-wdpa-api-token" class="anchor"></a>Managing WDPA API Token</h1>
 <hr>
 <p>This package uses the WDPA API to access data on the World protected areas. You must first have obtained a Personal API PAT by filling in the form available at: <a href="https://api.protectedplanet.net/request">https://api.protectedplanet.net/request</a>. Once you have obtained this token, you must store it on your computer. As recommended by Hadley Wickham in his <a href="https://cran.r-project.org/web/packages/httr/vignettes/secrets.html">Managing secrets vignette</a>, you can store your API PAT as an R Environment variable (a name-value pairs) listed in the <code>.Renviron</code> file in your home directory.</p>
-<p>Use the function <code>usethis::edit_r_environ</code> to open this file and add this line (by replacing <code>z999zzz...</code> with your Personal WDPA API Token):</p>
+<p>Use the function <code>usethis::edit_r_environ()</code> to open this file and add this line (by replacing <code>z999zzz...</code> with your Personal WDPA API Token):</p>
 <pre><code>WDPA_KEY='z999zzz9zzz999999z9z99zz999zz999'</code></pre>
 <p>Save the file and relaunch R.</p>
-<p>Now, let’s check if your Personal WDPA API Token is correctly stored in your <code>.Renviron</code> file by using the function <code>get_token</code>:</p>
+<p>Now, let’s check if your Personal WDPA API Token is correctly stored in your <code>.Renviron</code> file by using the function <code><a href="../reference/get_token.html">get_token()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Check if User's Token is correctly stored ----</span>
-<span class="fu">wdpa</span><span class="fu">::</span><span class="fu">get_token</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">worldpa</span><span class="fu">::</span><span class="fu"><a href="../reference/get_token.html">get_token</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co">## [1] "z999zzz9zzz999999z9z99zz999zz999"</span></code></pre></div>
 <p><br></p>
@@ -142,17 +142,17 @@
 <span class="co">## 9       Africa          AF Central African Republic          CAF        38</span>
 <span class="co">## 10      Africa          AF                     Chad          TCD        23</span></code></pre></div>
 <p><br></p>
-<p>As the WDPA is updated every month, you can get an updated version of this dataset by using the function <code>get_countries</code>:</p>
+<p>As the WDPA is updated every month, you can get an updated version of this dataset by using the function <code><a href="../reference/get_countries.html">get_countries()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Get UNEP-WCMC World Countries Information ----</span>
-<span class="fu">wdpa</span><span class="fu">::</span><span class="fu">get_countries</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu">worldpa</span><span class="fu">::</span><span class="fu"><a href="../reference/get_countries.html">get_countries</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="downloading-protected-areas" class="section level1">
 <h1 class="hasAnchor">
 <a href="#downloading-protected-areas" class="anchor"></a>Downloading Protected Areas</h1>
 <hr>
-<p>Now, let’s use the function <code>get_wdpa</code> to download protected areas shapefiles for Georgia.</p>
+<p>Now, let’s use the function <code><a href="../reference/get_wdpa.html">get_wdpa()</a></code> to download protected areas shapefiles for Georgia.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Get Georgia ISO-3 Code ----</span>
 <span class="va">wdpa_countries</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"Georgia"</span>, <span class="va">wdpa_countries</span><span class="op">$</span><span class="st">"country_name"</span><span class="op">)</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
@@ -162,8 +162,8 @@
 <span class="co">## 235 South Georgia and the South Sandwich Islands          SGS</span>
 
 <span class="co"># Download Georgia PA ----</span>
-<span class="va">pa_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_wdpa.html">get_wdpa</a></span><span class="op">(</span>isocode <span class="op">=</span> <span class="st">"GEO"</span><span class="op">)</span></code></pre></div>
-<p>The returned object is a simple feature <strong>sf object</strong> of <code>MULTIPOLYGONS</code> as defined in the package <a href="https://r-spatial.github.io/sf/">sf</a>. The function <code>get_wdpa</code> has also exported the protected areas as an ESRI Shapefile in the working directory.</p>
+<span class="va">pa_sf</span> <span class="op">&lt;-</span> <span class="fu">worldpa</span><span class="fu">::</span><span class="fu"><a href="../reference/get_wdpa.html">get_wdpa</a></span><span class="op">(</span>isocode <span class="op">=</span> <span class="st">"GEO"</span><span class="op">)</span></code></pre></div>
+<p>The returned object is a <strong>sf object</strong> of <code>MULTIPOLYGONS</code> as defined in the package <a href="https://r-spatial.github.io/sf/">sf</a>. The function <code><a href="../reference/get_wdpa.html">get_wdpa()</a></code> has also exported the protected areas as an ESRI Shapefile in a new folder: <strong>XXX_protectedareas/</strong> (where <code>XXX</code> is the ISO-3 code of the country).</p>
 <p><br></p>
 <p>If you have any question, please open an issue at: <a href="https://github.com/frbcesab/worldpa/issues">https://github.com/frbcesab/worldpa/issues</a></p>
 </div>
