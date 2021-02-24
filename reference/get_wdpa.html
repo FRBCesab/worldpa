@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldpa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -123,14 +123,19 @@
     <p>This function downloads protected areas for one country using the WDPA API.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_wdpa</span><span class='op'>(</span><span class='va'>isocode</span>, key <span class='op'>=</span> <span class='st'>"WDPA_KEY"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_wdpa</span><span class='op'>(</span><span class='va'>isocode</span>, path <span class='op'>=</span> <span class='st'>"wdpa"</span>, key <span class='op'>=</span> <span class='st'>"WDPA_KEY"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>isocode</th>
-      <td><p>a character specifying the ISO-3 code of the country.</p></td>
+      <td><p>a character specifying the ISO-3 code of the country</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>the path (directory) to save spatial dataset (<code>.gpkg</code>). Default
+is: <code>wdpa/</code>.</p></td>
     </tr>
     <tr>
       <th>key</th>
@@ -141,7 +146,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>MULTIPOLYGON</code> Simple Feature of protected areas defined in the
+    <p>A <code>sf</code> object (<strong>GEOMETRY</strong>) of protected areas defined in the
 EPSG 4326 with the following 19 attributes:</p><dl>
 <dt>wdpa_id</dt><dd><p>the ID of the protected area on the WDPA database</p></dd>
 <dt>pa_name</dt><dd><p>the name of the protected area on the WDPA database</p></dd>
@@ -169,8 +174,13 @@ Planet website</p></dd>
 
 </dl>
 
-<p>Spatial shapefiles (ESRI format) are also written on the hard drive in a new
-folder <strong>XXX_protectedareas/</strong> (where <code>XXX</code> is the ISO-3 code of the country).</p>
+<p>Spatial data are also written on the hard drive in the folder <code>path</code> as a
+<strong>geopackage</strong>. Filename is structured as <strong>XXX_protectedareas.gpkg</strong> (where
+<code>XXX</code> is the ISO-3 code of the country). If the <code>path</code> folder does not exist
+it will created relatively to the current directory.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Note that some geometries are <strong>POINTS</strong> not <strong>(MULTIPOLYGONS)</strong>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>wdpa_countries</code>, <code>get_countries</code></p></div>
@@ -179,14 +189,14 @@ folder <strong>XXX_protectedareas/</strong> (where <code>XXX</code> is the ISO-3
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Get the ISO-3 code of Georgia ----</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"wdpa_countries"</span>, package <span class='op'>=</span> <span class='st'>"worldpa"</span><span class='op'>)</span>
-<span class='va'>wdpa_countries</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span><span class='op'>(</span><span class='st'>"^Georgia"</span>, <span class='va'>wdpa_countries</span><span class='op'>$</span><span class='st'>"country_name"</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='va'>wdpa_countries</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grep</a></span><span class='op'>(</span><span class='st'>"Georgia"</span>, <span class='va'>wdpa_countries</span><span class='op'>$</span><span class='st'>"country_name"</span><span class='op'>)</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
 
 <span class='co'>##                                     country_name country_iso3</span>
 <span class='co'>## 133                                      Georgia          GEO</span>
 <span class='co'>## 235 South Georgia and the South Sandwich Islands          SGS</span>
 
 <span class='co'>## Download Protected Areas for Georgia ----</span>
-<span class='fu'>worldpa</span><span class='fu'>::</span><span class='fu'>get_wdpa</span><span class='op'>(</span>isocode <span class='op'>=</span> <span class='st'>"GEO"</span><span class='op'>)</span>
+<span class='fu'>worldpa</span><span class='fu'>::</span><span class='fu'>get_wdpa</span><span class='op'>(</span>isocode <span class='op'>=</span> <span class='st'>"GEO"</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='st'>"data"</span>, <span class='st'>"wdpa"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
