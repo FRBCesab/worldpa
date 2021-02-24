@@ -49,7 +49,7 @@ get_countries <- function(sleep = 0, key = "WDPA_KEY") {
 
   while (content) {
 
-    request <- wdpa_fullurl("v3/countries", "?token=", wdpa_token,
+    request <- wdpa_fullurl("v3/countries", "?token=", wdpa_token, 
                             "&per_page=50", "&page=", page)
 
     response <- httr::GET(request)

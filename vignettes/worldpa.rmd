@@ -23,7 +23,7 @@ vignette: >
 
 The R package `{worldpa}` is an interface to the World Database on Protected Areas (WDPA)
 hosted on the Protected Planet website: [https://www.protectedplanet.net](https://www.protectedplanet.net).
-It allows users to download spatial shapefiles of terrestrial and marine protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
+It allows users to download spatial layers of terrestrial and marine protected areas (PA) for world countries using the WDPA API ([https://api.protectedplanet.net](https://api.protectedplanet.net)).
 
 This package contains three main functions:
 
@@ -130,8 +130,7 @@ worldpa::get_countries()
 
 
 
-Now, let's use the function `get_wdpa()` to download protected areas shapefiles 
-for Georgia.
+Now, let's use the function `get_wdpa()` to download protected areas for Georgia.
 
 
 ```{r echo=TRUE, eval=FALSE}
@@ -146,10 +145,10 @@ wdpa_countries[grep("Georgia", wdpa_countries$"country_name"), 3:4]
 pa_sf <- worldpa::get_wdpa(isocode = "GEO")
 ```
 
-The returned object is a **sf object** of `MULTIPOLYGONS` as 
-defined in the package `{sf}`. The function `get_wdpa()` has also exported the 
-protected areas as an ESRI Shapefile in a new folder: **XXX_protectedareas/** 
-(where `XXX` is the ISO-3 code of the country).
+The returned object is a **sf object** (**GEOMETRY**) of protected areas defined 
+in the EPSG 4326. Type `?get_wdpa` to get more information about the attributes. 
+The function `get_wdpa()` has also exported the protected areas as a **geopackage**
+(`.gpkg`). User can import this layer with the function `sf::st_read()`.
 
 <br />
 

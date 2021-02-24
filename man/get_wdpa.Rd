@@ -4,16 +4,19 @@
 \alias{get_wdpa}
 \title{Download Protected Areas by Country}
 \usage{
-get_wdpa(isocode, key = "WDPA_KEY")
+get_wdpa(isocode, path = "wdpa", key = "WDPA_KEY")
 }
 \arguments{
-\item{isocode}{a character specifying the ISO-3 code of the country.}
+\item{isocode}{a character specifying the ISO-3 code of the country}
+
+\item{path}{the path (directory) to save spatial dataset (\code{.gpkg}). Default
+is: \verb{wdpa/}.}
 
 \item{key}{a character providing the WDPA token name stored in the
 \code{.Renviron} file. Default is \code{WDPA_KEY}.}
 }
 \value{
-A \code{MULTIPOLYGON} Simple Feature of protected areas defined in the
+A \code{sf} object (\strong{GEOMETRY}) of protected areas defined in the
 EPSG 4326 with the following 19 attributes:
 \describe{
 \item{wdpa_id}{the ID of the protected area on the WDPA database}
@@ -41,24 +44,29 @@ Planet website}
 \item{legal_status_updated}{the date of the last update of the legal status}
 }
 
-Spatial shapefiles (ESRI format) are also written on the hard drive in a new
-folder \strong{XXX_protectedareas/} (where \code{XXX} is the ISO-3 code of the country).
+Spatial data are also written on the hard drive in the folder \code{path} as a
+\strong{geopackage}. Filename is structured as \strong{XXX_protectedareas.gpkg} (where
+\code{XXX} is the ISO-3 code of the country). If the \code{path} folder does not exist
+it will created relatively to the current directory.
 }
 \description{
 This function downloads protected areas for one country using the WDPA API.
+}
+\note{
+Note that some geometries are \strong{POINTS} not \strong{(MULTIPOLYGONS)}.
 }
 \examples{
 \dontrun{
 ## Get the ISO-3 code of Georgia ----
 data("wdpa_countries", package = "worldpa")
-wdpa_countries[grep("^Georgia", wdpa_countries$"country_name"), 3:4]
+wdpa_countries[grep("Georgia", wdpa_countries$"country_name"), 3:4]
 
 ##                                     country_name country_iso3
 ## 133                                      Georgia          GEO
 ## 235 South Georgia and the South Sandwich Islands          SGS
 
 ## Download Protected Areas for Georgia ----
-worldpa::get_wdpa(isocode = "GEO")
+worldpa::get_wdpa(isocode = "GEO", path = file.path("data", "wdpa"))
 }
 }
 \seealso{

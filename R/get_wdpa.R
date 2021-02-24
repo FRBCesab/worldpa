@@ -2,10 +2,12 @@
 #'
 #' This function downloads protected areas for one country using the WDPA API.
 #'
-#' @param isocode a character specifying the ISO-3 code of the country.
+#' @param isocode a character specifying the ISO-3 code of the country
+#' @param path the path (directory) to save spatial dataset (`.gpkg`). Default 
+#' is: `wdpa/`.
 #' @inheritParams get_token
 #'
-#' @return A `MULTIPOLYGON` Simple Feature of protected areas defined in the
+#' @return A `sf` object (**GEOMETRY**) of protected areas defined in the
 #'   EPSG 4326 with the following 19 attributes: 
 #' \describe{
 #'   \item{wdpa_id}{the ID of the protected area on the WDPA database}
@@ -33,8 +35,12 @@
 #'   \item{legal_status_updated}{the date of the last update of the legal status}
 #' }
 #'   
-#' Spatial shapefiles (ESRI format) are also written on the hard drive in a new 
-#' folder **XXX_protectedareas/** (where `XXX` is the ISO-3 code of the country).
+#' Spatial data are also written on the hard drive in the folder `path` as a 
+#' **geopackage**. Filename is structured as **XXX_protectedareas.gpkg** (where 
+#' `XXX` is the ISO-3 code of the country). If the `path` folder does not exist 
+#' it will created relatively to the current directory.
+#' 
+#' @note Note that some geometries are **POINTS** not **(MULTIPOLYGONS)**.
 #'
 #' @seealso `wdpa_countries`, `get_countries`
 #'
@@ -44,19 +50,19 @@
 #' \dontrun{
 #' ## Get the ISO-3 code of Georgia ----
 #' data("wdpa_countries", package = "worldpa")
-#' wdpa_countries[grep("^Georgia", wdpa_countries$"country_name"), 3:4]
+#' wdpa_countries[grep("Georgia", wdpa_countries$"country_name"), 3:4]
 #'
 #' ##                                     country_name country_iso3
 #' ## 133                                      Georgia          GEO
 #' ## 235 South Georgia and the South Sandwich Islands          SGS
 #'
 #' ## Download Protected Areas for Georgia ----
-#' worldpa::get_wdpa(isocode = "GEO")
+#' worldpa::get_wdpa(isocode = "GEO", path = file.path("data", "wdpa"))
 #' }
 
 
 
-get_wdpa <- function(isocode, key = "WDPA_KEY") {
+get_wdpa <- function(isocode, path = "wdpa", key = "WDPA_KEY") {
 
 
   ## Checks inputs ----
@@ -76,8 +82,8 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
 
   ## Is ISO-3 code valid? ----
 
-  response <- httr::GET(wdpa_fullurl("v3/countries/", isocode, 
-                                     "?token=", wdpa_token))
+  response <- httr::GET(wdpa_fullurl("v3/countries/", isocode, "?token=", 
+                                     wdpa_token))
 
   if (response$"status" == 404) {
     stop("Invalid ISO-3 code.\n",
@@ -96,6 +102,9 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
   pas_count <- response$"country"$"pas_count"
   pages     <- seq_len(ceiling(pas_count / 50))
 
+  
+  ## Download Data ----
+  
   if (pas_count) {
 
     for (page in pages) {
@@ -137,8 +146,6 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
       )
 
       pa_sf <- sf::st_sf(attributs, geom = sf::st_geometry(pa_sf))
-      pa_sf <- sf::st_collection_extract(pa_sf, type = "POLYGON")
-      pa_sf <- sf::st_cast(pa_sf, "MULTIPOLYGON")
 
       if (page == 1) {
 
@@ -150,14 +157,15 @@ get_wdpa <- function(isocode, key = "WDPA_KEY") {
       }
     }
 
-    dir.create(paste0(isocode, "_protectedareas"), showWarnings = FALSE)
-
+    
+    ## Write Layer ----
+    
+    if (!dir.exists(path)) dir.create(path, recursive = TRUE)
+    
     sf::st_write(
       obj    = all_pa,
-      dsn    = paste0(isocode, "_protectedareas"),
-      layer  = paste0(isocode, "_protectedareas"),
-      driver = "ESRI Shapefile",
-      quiet  = TRUE)
+      dsn    = file.path(path, paste0(isocode, "_protectedareas.gpkg")),
+      layer  = paste0(isocode, "_protectedareas"))
 
     return(all_pa)
 
